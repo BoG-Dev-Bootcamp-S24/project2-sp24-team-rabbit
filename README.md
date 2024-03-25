@@ -21,8 +21,7 @@ There are a lot of "bonuses" included in the specifications in this project. We 
 ## Frontend Specifications
 We will be incorporating all we have learned thus far such as CSS, components, hooks/state, conditional rendering, and routing! Here's a link to the [Figma designs](https://www.figma.com/file/8nmpzRec6atkZMdXYXH0bW/AnimalTrainingApp?type=design&node-id=0%3A1&mode=design&t=v1XLulgKlPSI40S2-1). We recommend following the general organization of these designs, but feel free to have creative freedom in designing the frontend.
 
-**Tailwind CSS is required for the frontend.** We have already installed it with the boilerplate Next.js app, so it is ready to be used! If you need a short reminder of what it is, please reference [Lecture 2](https://docs.google.com/presentation/d/1NNFypM5SxF0BNhiNgBdpc588qY-rmivhZ8pvP7ifO7k/edit#slide=id.g2b497fbce1c_1_4) or the official [Tailwind Documentation](https://tailwindcss.com/docs/utility-first).
-Below is an example:
+**Tailwind CSS is required for the frontend.** We have already installed it with the boilerplate Next.js app, so it is ready to be used! If you need a short reminder of what it is, please reference [Lecture 2](https://docs.google.com/presentation/d/1NNFypM5SxF0BNhiNgBdpc588qY-rmivhZ8pvP7ifO7k/edit#slide=id.g2b497fbce1c_1_4) or the official [Tailwind Documentation](https://tailwindcss.com/docs/utility-first). Also the "Tailwind CSS IntelliSense" extenstion on VS Code is extremly helpful! Below is an example:
 ```
 // Tailwind Styling
 <div className="flex justify-center items-center text-lg text-blue-600 bg-white border-[4px]">
