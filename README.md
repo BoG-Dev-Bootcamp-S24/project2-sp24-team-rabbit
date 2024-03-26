@@ -7,7 +7,7 @@ There are a lot of "bonuses" included in the specifications in this project. We 
 
 ## Submission
 - Present your final project during class on 04/11/2024
-- **Due: 04/11/2024**
+- **Due: 04/10/2024**
 
 ## Getting Started
 - Create **one** fork of this repository for your entire group, titled project2-sp24-[groupname]
