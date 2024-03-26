@@ -175,3 +175,11 @@ export default function Page() {
 
 ### (Bonus) JWT Authentication
 - Instead of tracking user info using a hook, incorporate JWT authentication and use cookies to track user information.
+
+### (Bonus) Pagination (Look at Read Operations)
+
+### (Bonus) Search Bar
+
+### (Bonus) Authentication for create training log api
+
+### (Bonus) Edit Training Logs
