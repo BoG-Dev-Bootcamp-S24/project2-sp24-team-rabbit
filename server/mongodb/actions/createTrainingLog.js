@@ -1,7 +1,7 @@
 import connectDB from "..";
 import TrainingLog from "../models/TrainingLog";
 
-export default async function createUser(data) {
+export default async function createTrainingLog(data) {
     try {
         await connectDB();
         const user = new TrainingLog(data);
