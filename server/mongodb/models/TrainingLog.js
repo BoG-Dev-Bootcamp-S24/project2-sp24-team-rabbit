@@ -21,6 +21,7 @@ const trainingLogSchema = new mongoose.Schema({
     }, 
     description : {
         type : String,
+        required : true,
     },
     hours : {
         type : Number,
