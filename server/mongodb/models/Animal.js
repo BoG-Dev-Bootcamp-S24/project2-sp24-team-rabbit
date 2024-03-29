@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const Animal = new mongoose.Schema({
+const animalSchema = new mongoose.Schema({
     _id : mongoose.Schema.Types.ObjectId,
     name : {
         type : String,
@@ -24,4 +24,4 @@ const Animal = new mongoose.Schema({
     }
 });
 
-export default mongoose.model("Animal", animalSchema);
+export default mongoose.models?.Animal || mongoose.model("Animal", animalSchema);
