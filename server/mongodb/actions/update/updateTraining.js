@@ -1,4 +1,5 @@
 import connectDB from "../..";
+import Animal from "../../models/Animal";
 import TrainingLog from "../../models/TrainingLog";
 
 export default async function updateTraining(data) {

@@ -1,4 +1,5 @@
 import connectDB from "../..";
+import Animal from "../../models/Animal";
 
 export default async function readAnimals() {
     try {

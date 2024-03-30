@@ -1,4 +1,5 @@
 import connectDB from "..";
+import Animal from "../../models/Animal";
 import TrainingLog from "../../models/TrainingLog";
 
 export default async function updateAnimalHours(data) {
@@ -17,10 +18,9 @@ export default async function updateAnimalHours(data) {
             throw e;
         }
         const logs = await TrainingLog.find({ animalId: animalId });
-        let totalHours = 0;
-        logs.map((log) => {
-            totalHours += log.hours;
-        })
+        let totalHours = logs.reduce((total, log) => {
+            return total += log.hours;
+        }, 0)
         await Ticket.findByIdAndUpdate(animalId, { hoursTrained: totalHours });
         return true;
     } catch (e) {
