@@ -30,10 +30,7 @@ export default async function updateTraining(data) {
                                                         hours: hours } );
         return true;
     } catch (e) {
-        console.log(e)
-        if (e.name === "InvalidParametersError" || e.name === "TrainingLogNotFoundError") {
-            throw e;
-        }
-        throw new Error("Failed")
+        console.log(e);
+        throw e;
     }
 }

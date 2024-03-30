@@ -8,6 +8,7 @@ export default async function createUser(data) {
         await user.save();
         return true;
     } catch (e) {
-        throw(e)
+        console.log(e);
+        throw e;
     }
 }

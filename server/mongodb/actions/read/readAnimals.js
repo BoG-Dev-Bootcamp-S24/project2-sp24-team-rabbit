@@ -7,6 +7,7 @@ export default async function readAnimals() {
         let res = await Animal.find();
         return res;
     } catch (e) {
-        throw(e);
+        console.log(e);
+        throw e;
     }
 }

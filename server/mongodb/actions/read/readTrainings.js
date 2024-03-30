@@ -7,6 +7,7 @@ export default async function readTrainings() {
         let res = await TrainingLog.find();
         return res;
     } catch (e) {
-        throw(e);
+        console.log(e);
+        throw e;
     }
 }

@@ -12,6 +12,7 @@ export default async function readUsers() {
         })
         return withoutpw;
     } catch (e) {
-        throw(e);
+        console.log(e);
+        throw e;
     }
 }

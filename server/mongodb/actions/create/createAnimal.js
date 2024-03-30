@@ -8,6 +8,7 @@ export default async function createAnimal(data) {
         await animal.save();
         return true;
     } catch (e) {
-        throw(e)
+        console.log(e);
+        throw e;
     }
 }

@@ -18,16 +18,11 @@ export default async function updateAnimalHours(data) {
             throw e;
         }
         const logs = await TrainingLog.find({ animalId: animalId });
-        let totalHours = logs.reduce((total, log) => {
-            return total += log.hours;
-        }, 0)
+        let totalHours = logs.reduce((total, log) => total + log.hours, 0)
         await Ticket.findByIdAndUpdate(animalId, { hoursTrained: totalHours });
         return true;
     } catch (e) {
-        console.log(e)
-        if (e.name === "InvalidParametersError" || e.name === "AnimalNotFoundError") {
-            throw e;
-        }
-        throw new Error("Failed")
+        console.log(e);
+        throw e;
     }
 }
