@@ -1,4 +1,5 @@
 import connectDB from "..";
+import TrainingLog from "../../models/TrainingLog";
 
 export default async function updateAnimalHours(data) {
     try {
@@ -15,7 +16,12 @@ export default async function updateAnimalHours(data) {
             e.name = "AnimalNotFoundError";
             throw e;
         }
-        await Ticket.findByIdAndUpdate( animalId, { hoursTrained: 0 });
+        const logs = await TrainingLog.find({ animalId: animalId });
+        let totalHours = 0;
+        logs.map((log) => {
+            totalHours += log.hours;
+        })
+        await Ticket.findByIdAndUpdate(animalId, { hoursTrained: totalHours });
         return true;
     } catch (e) {
         console.log(e)

@@ -3,11 +3,11 @@ import mongoose from 'mongoose'
 
 const trainingLogSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    user: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
-    animal: {
+    animalId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
