@@ -6,26 +6,23 @@ const trainingLogSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
+    title: {
+        type: String,
+        required: true
+    },
     animalId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
-    title: {
-        type: String,
+    hours: { 
+        type: Number,
         required: true
     },
     date: {
         type: Date,
         required: true
     },
-    description: {
-        type: String,
-        required: true
-    },
-    hours: {
-        type: Number,
-        required: true
-    }
+    note: String
 });
 
 export default mongoose.models?.TrainingLog || mongoose.model("TrainingLog", trainingLogSchema);
