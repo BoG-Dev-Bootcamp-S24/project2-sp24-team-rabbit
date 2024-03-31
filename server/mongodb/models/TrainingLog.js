@@ -2,7 +2,6 @@
 import mongoose from 'mongoose'
 
 const trainingLogSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true

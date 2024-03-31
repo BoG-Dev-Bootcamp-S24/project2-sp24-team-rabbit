@@ -1,4 +1,5 @@
 import connectDB from "../..";
+import User from "../../models/User";
 
 export default async function readUsers() {
     try {
