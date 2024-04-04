@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from 'next/link'
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,7 +19,7 @@ export default function Login() {
 
         <div className="flex flex-row whitespace-nowrap mt-[7%]">
           <p className="text-black">Don't have an account?</p>
-          <button className="pl-[3%] font-bold text-black">Sign up</button>
+          <Link href="/signup" className="pl-[3%] font-bold text-black">Sign up</Link>
         </div>
 
       </div>
