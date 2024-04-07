@@ -3,11 +3,12 @@ import Searchbar from "./Searchbar";
 
 const searchbarActive = true;
 
-export default function Navbar() {
+export default function Navbar(props) {
+    const {searchBar} = props;
     return (
         <div className="h-20 w-full border border-gray-200 flex flex-row items-center justify-between">
             <Logo />
-            <Searchbar />
+            {searchBar && <Searchbar />}
             <div style={{ width: '265.94px' }}></div>
         </div>
     )
