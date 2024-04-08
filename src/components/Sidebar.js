@@ -61,26 +61,26 @@ export default function SideBar() {
     }
 
     return (
-        <div className="p-5 h-full border-r-2 border-gray-100" style={{width: `14%`}}>
-            <div onClick={handleTrainingLogsClick} className={`flex border border-white rounded-lg items-center p-2 h-8 cursor-pointer ${trainingLogsActive ? 'bg-red-600' : 'bg-white'}`}>
+        <div className="p-5 h-full border-r-2 border-gray-100" style={{width: `17%`}}>
+            <div onClick={handleTrainingLogsClick} className={`flex border border-white rounded-lg items-center p-2 h-8 cursor-pointer ${trainingLogsActive ? 'bg-red-600' : 'bg-white hover:bg-gray-100'} `}>
                 <Image className="ml-2 w-5" src={trainingLogsActive ? activeTrainingLogsLogo : inactiveTrainingLogsLogo}/>
                 <p className={`ml-2.5 text-sm font-medium ${trainingLogsActive ? 'text-white' : 'text-gray-600'}`}>Training logs</p>
             </div>
-            <div onClick={handleAnimalsClick} className={`flex border border-white rounded-lg items-center p-2 h-8 mt-1 cursor-pointer ${animalsActive ? 'bg-red-600' : 'bg-white'}`}>
+            <div onClick={handleAnimalsClick} className={`flex border border-white rounded-lg items-center p-2 h-8 mt-1 cursor-pointer ${animalsActive ? 'bg-red-600' : 'bg-white hover:bg-gray-100'} `}>
                 <Image className="w-5 ml-2" src={animalsActive ? activeAnimalsLogo : inactiveAnimalLogo}/>
                 <p className={`ml-2.5 text-sm font-medium ${animalsActive ? 'text-white' : 'text-gray-600'}`}>Animals</p>
             </div>
             <div className="width-full  border-t-2 mb-3 mt-3 " ></div>
             <p className="ml-2.5 font-semibold text-gray-700 mt-1 mb-3 text-sm ">Admin Access</p>
-            <div onClick={handleAllTrainingsClick} className={`flex border border-white rounded-lg items-center p-2 h-8 mt-1 cursor-pointer ${allTrainingActive ? 'bg-red-600' : 'bg-white'}`}>
+            <div onClick={handleAllTrainingsClick} className={`flex border border-white rounded-lg items-center p-2 h-8 mt-1 cursor-pointer ${allTrainingActive ? 'bg-red-600' : 'bg-white hover:bg-gray-100'} `}>
                 <Image className="w-5 ml-2" src={allTrainingActive ? activeAllTrainingLogo : inactiveAllTrainingLogo}/>
                 <p className={`ml-2.5 text-sm font-medium ${allTrainingActive ? 'text-white' : 'text-gray-600'}`}>All training</p>
             </div>
-            <div onClick={handleAllAnimalsClick} className={`flex border border-white rounded-lg items-center p-2 h-8 mt-1 cursor-pointer ${allAnimalsActive ? 'bg-red-600' : 'bg-white'}`}>
+            <div onClick={handleAllAnimalsClick} className={`flex border border-white rounded-lg items-center p-2 h-8 mt-1 cursor-pointer ${allAnimalsActive ? 'bg-red-600' : 'bg-white hover:bg-gray-100'} `}>
                 <Image className="w-5 ml-2" src={allAnimalsActive ? activeAllAnimalsLogo : inactiveAllAnimalsLogo}/>
                 <p className={`ml-2.5 text-sm font-medium ${allAnimalsActive ? 'text-white' : 'text-gray-600'}`}>All animals</p>
             </div>
-            <div onClick={handleAllUsersClick} className={`flex border border-white rounded-lg items-center p-2 h-8 mt-1 cursor-pointer ${allUsersActive ? 'bg-red-600' : 'bg-white'}`}>
+            <div onClick={handleAllUsersClick} className={`flex border border-white rounded-lg items-center p-2 h-8 mt-1 cursor-pointer ${allUsersActive ? 'bg-red-600' : 'bg-white hover:bg-gray-100'} `}>
                 <Image className="w-5 ml-2" src={allUsersActive ? activeAllUsersLogo : inactiveAllUsersLogo}/>
                 <p className={`ml-2.5 text-sm font-medium ${allUsersActive ? 'text-white' : 'text-gray-600'}`}>All users</p>
             </div>
