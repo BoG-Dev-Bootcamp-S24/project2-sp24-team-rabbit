@@ -1,20 +1,29 @@
 import Image from "next/image";
 import Link from 'next/link'
 import { Inter } from "next/font/google";
+import React, { useState } from 'react'
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function CreateAccount() {
+    const [currName, setCurrName] = useState("");
+    const [currEmail, setCurrEmail] = useState("");
+    const [currPass, setCurrPass] = useState("");
+    const [currVerifyPass, setCurrVerifyPass] = useState("");
     
     return(
         <div className= "w-[70%] flex flex-col items-center mt-[5%]">
         <h1 className="text-black text-4xl font-bold">Sign up</h1>
 
         <form className="mt-[4%] flex flex-col w-[50%] h-[50%] content-between">
-            <input type="email" className="bg-transparent border-b-2 border-red-600 w-[100%] text-black outline-none" name="Email" placeholder="Full Name"/>
-            <input type="email" className="bg-transparent border-b-2 border-red-600 w-[100%] mt-[5%] text-black outline-none" name="Email" placeholder="Email"/>
-            <input type="password" className="bg-transparent border-b-2 border-red-600 w-[100%] mt-[5%] text-black outline-none" name="Password" placeholder="Password"/>
-            <input type="password" className="bg-transparent border-b-2 border-red-600 w-[100%] mt-[5%] text-black outline-none" name="Password" placeholder="Confirm Password"/>
+            <input type="text" className="bg-transparent border-b-2 border-red-600 w-[100%] text-black outline-none" 
+                name="Name" placeholder="Full Name" onChange={(event) => setCurrName(event.target.value)}/>
+            <input type="email" className="bg-transparent border-b-2 border-red-600 w-[100%] mt-[5%] text-black outline-none" 
+                name="Email" placeholder="Email" onChange={(event) => setCurrEmail(event.target.value)}/>
+            <input type="password" className="bg-transparent border-b-2 border-red-600 w-[100%] mt-[5%] text-black outline-none" 
+                name="Password" placeholder="Password" onChange={(event) => setCurrPass(event.target.value)}/>
+            <input type="password" className="bg-transparent border-b-2 border-red-600 w-[100%] mt-[5%] text-black outline-none" 
+                name="ConfrimPassword" placeholder="Confirm Password" onChange={(event) => setCurrVerifyPass(event.target.value)}/>
             <button type="submit" className="text-white text-xl font-bold mt-[7%] w-[100] p-[1%] rounded-lg bg-red-600"
                 onClick={() => false}>Sign up</button>
         </form>
