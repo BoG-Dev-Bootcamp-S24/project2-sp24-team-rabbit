@@ -17,7 +17,7 @@ import SidebarButton from "./SidebarButton";
 import LogOut from "./LogOut";
 import Link from "next/link";
 
-export default function SideBar({adminAccess, currentPage}) {
+export default function SideBar({adminAccess, currentPage, user}) {
 
     const [trainingLogsActive, setTrainingLogsActive] = useState(currentPage === "traininglogs");
     const [animalsActive, setAnimalsActive] = useState(currentPage === "animalslist");
@@ -86,7 +86,7 @@ export default function SideBar({adminAccess, currentPage}) {
                     </>
                 }
             </div>
-            <LogOut name={"Nathan"} adminBool={adminAccess} pfp={profilePic}/>
+            <LogOut name={user} adminBool={adminAccess} pfp={profilePic}/>
         </div>
     )
 }
