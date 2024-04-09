@@ -44,10 +44,14 @@ export default function AnimalsList() {
                 <div className="w-[100%] flex flex-row justify-start items-start flex-wrap text-black m-[3%]">
                     {animalList == null ? <div>Loading...</div> : animalList[0] == null ? <div>No Animals Found</div> : 
                         animalList.map((animal, index) => 
-                        <Animal animal={animal} className={`${index === animalList.length - 1 ? "pb-[200px]" : ""}`}/>
+                        <Animal animal={animal}/>
                     )}
                 </div>
             }
+
+            <div className="w-full h-[50px]">
+
+            </div>
 
         </div>
     )
