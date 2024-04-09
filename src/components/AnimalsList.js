@@ -29,13 +29,13 @@ export default function AnimalsList() {
     animalList[6] = animal
 
     return(
-        <div className="w-[100%]">
-            <div className="w-[100%] border-b-2 pl-[2%] py-[1%] px-[10%] flex justify-between">
-                <h1 className="text-lg font-bold text-slate-500">Animals</h1>
-                {!formStatus && <button className="text-slate-500 w-[10.5%] flex justify-between items-center whitespace-nowrap" onClick={()=>
+        <div className="w-[100%] h-[100%] overflow-y-auto overflow-x-hidden">
+            <div className="flex flex-row border-b-2 pt-6 pb-2 h-auto w-[100%] justify-between items-end">
+                <p className="ml-6 font-medium text-2xl" style={{color: "rgb(128, 116, 116)"}}>Animals</p>
+                {!formStatus && <button className="ml-1 font-medium flex flex-row items-center" style={{color: "rgb(128, 116, 116)"}} onClick={()=>
                     {setFormStatus(true)}}>
-                    <Image src={createNewLogo} className="w-[18%]"/>
-                    Create New
+                    <Image src={createNewLogo} className="w-[12%]"/>
+                    <span className="ml-1 mr-5">Create new</span>
                 </button>}          
             </div>
             
@@ -43,8 +43,8 @@ export default function AnimalsList() {
                 <Form type="animal"/> :
                 <div className="w-[100%] flex flex-row justify-start items-start flex-wrap text-black m-[3%]">
                     {animalList == null ? <div>Loading...</div> : animalList[0] == null ? <div>No Animals Found</div> : 
-                        animalList.map((animal) => 
-                        <Animal animal={animal}/>
+                        animalList.map((animal, index) => 
+                        <Animal animal={animal} className={`${index === animalList.length - 1 ? "pb-[200px]" : ""}`}/>
                     )}
                 </div>
             }
