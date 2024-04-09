@@ -25,7 +25,7 @@ export default function TrainingLogItem({ log }) {
 //   <div className="flex-none bg-blue-500 text-white p-4">
 //     <div className="flex flex-col items-center justify-center h-full"></div>
 
-        <div className="bg-white shadow-lg rounded-lg mb-4 flex overflow-hidden">
+        <div className="bg-white shadow-lg items-center rounded-lg mb-4 flex overflow-hidden">
 
         <div className="flex-none rounded-l-lg bg-blue-900 text-white p-6 mr-4">
             <div className="flex flex-col items-center">
@@ -47,7 +47,7 @@ export default function TrainingLogItem({ log }) {
         </div>
     
 
-        <div className="flex-none">
+        <div className="flex-none mr-4">
             <Image className="object-contain ml-6" src={editButton} alt="App Logo" width={50} height={50} />
         </div>
         </div>
