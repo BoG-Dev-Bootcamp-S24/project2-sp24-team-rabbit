@@ -15,11 +15,12 @@ import { useState } from "react";
 import logoutLogo from "/public/images/logoutLogo.png"
 import SidebarButton from "./SidebarButton";
 import LogOut from "./LogOut";
+import Link from "next/link";
 
-export default function SideBar({adminAccess}) {
+export default function SideBar({adminAccess, currentPage}) {
 
-    const [trainingLogsActive, setTrainingLogsActive] = useState(true);
-    const [animalsActive, setAnimalsActive] = useState(false);
+    const [trainingLogsActive, setTrainingLogsActive] = useState(currentPage === "traininglogs");
+    const [animalsActive, setAnimalsActive] = useState(currentPage === "animalslist");
     const [allTrainingActive, setAllTrainingActive] = useState(false);
     const [allAnimalsActive, setAllAnimalsActive] = useState(false);
     const [allUsersActive, setAllUsersActive] = useState(false);
@@ -67,8 +68,13 @@ export default function SideBar({adminAccess}) {
     return (
         <div className="p-5 h-full border-r-2 border-gray-100 flex flex-col w-full justify-between" style={{width: `18%`}}>
             <div className="w-full">
-                <SidebarButton onClickFunc={handleTrainingLogsClick} inactiveImgSrc={inactiveTrainingLogsLogo} activeImgSrc={activeTrainingLogsLogo} activeBool={trainingLogsActive} text={"Training logs"}/>
-                <SidebarButton onClickFunc={handleAnimalsClick} inactiveImgSrc={inactiveAnimalLogo} activeImgSrc={activeAnimalsLogo} activeBool={animalsActive} text={"Animals"}/>
+                
+                <Link href="/traininglogs">
+                    <SidebarButton onClickFunc={handleTrainingLogsClick} inactiveImgSrc={inactiveTrainingLogsLogo} activeImgSrc={activeTrainingLogsLogo} activeBool={trainingLogsActive} text={"Training logs"}/>
+                </Link>
+                <Link href="/animalslist">
+                    <SidebarButton onClickFunc={handleAnimalsClick} inactiveImgSrc={inactiveAnimalLogo} activeImgSrc={activeAnimalsLogo} activeBool={animalsActive} text={"Animals"}/>
+                </Link>
                 
                 {   adminAccess &&
                     <>

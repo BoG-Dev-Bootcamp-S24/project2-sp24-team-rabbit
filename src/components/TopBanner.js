@@ -2,7 +2,7 @@ import createNewLogo from "/public/images/createNewLogo.png"
 import Image from "next/image";
 
 export default function TopBanner(props) {
-    const {animalsList} = props;
+    const {animalsList,} = props;
     return (
         <div className="flex flex-row border-b-2 pt-6 pb-2 h-auto w-[100%] justify-between items-end"> 
             <p className="ml-6 font-medium text-2xl" style={{color: "rgb(128, 116, 116)"}}>{animalsList ? "Animals" : "Training logs"}</p>
