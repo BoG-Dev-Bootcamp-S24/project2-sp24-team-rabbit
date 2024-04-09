@@ -7,9 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function animalList() {
   return (
-    <div className="bg-white w-full h-full flex flex-col justify-between items-center">
+    <div className="bg-white w-full h-[100%] flex flex-col justify-between items-center">
       <TopBanner searchBar={true}/>
-      <div className="w-[80%]"><AnimalsList /></div>
+      <div className="w-[80%] h-[80%]"><AnimalsList /></div>
       <div></div>
     </div>
   );
