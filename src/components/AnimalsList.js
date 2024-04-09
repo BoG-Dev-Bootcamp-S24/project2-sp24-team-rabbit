@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Animal from "../components/Animal"
+import Form from "../components/Form"
 import createNewLogo from "/public/images/createNewLogo.png"
 import React, { useState } from 'react'
 const inter = Inter({ subsets: ["latin"] });
@@ -28,19 +29,19 @@ export default function AnimalsList() {
     animalList[6] = animal
 
     return(
-        <div className="w-[100%]">
+        <div className="w-[100%] min-h-[100%]">
             <div className="w-[100%] border-b-2 pl-[2%] py-[1%] px-[10%] flex justify-between">
                 <h1 className="text-lg font-bold text-slate-500">Animals</h1>
                 {!formStatus && <button className="text-slate-500 w-[10.5%] flex justify-between items-center whitespace-nowrap" onClick={()=>
                     {setFormStatus(true)}}>
                     <Image src={createNewLogo} className="w-[18%]"/>
                     Create New
-                </button>}
+                </button>}          
             </div>
             
             {formStatus ? 
-                <div>
-                    Form
+                <div className="min-h-[100%]">
+                    <Form type="animal"/>
                 </div> :
                 <div className="w-[100%] flex flex-row justify-start items-start flex-wrap text-black m-[3%]">
                     {animalList == null ? <div>Loading...</div> : animalList[0] == null ? <div>No Animals Found</div> : 
