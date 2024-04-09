@@ -1,10 +1,10 @@
 import connectDB from "..";
-import Animal from "../models/Animal";
+import TrainingLog from "../models/TrainingLog";
 
-export default async function createAnimal(data) {
+export default async function createTrainingLog(data) {
     try {
         await connectDB();
-        const user = new Animal(data);
+        const user = new TrainingLog(data);
         await user.save();
     } catch (error) {
         console.error("Error connecting to database", error);
