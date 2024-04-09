@@ -13,7 +13,6 @@ export default function AnimalsList() {
           <div className="w-full h-full flex flex-row">
             <SideBar/>
             <div className="flex flex-col w-full h-full">
-              <TopBanner animalsList={true}/>
               <AnimalsListContainer />
             </div>
           </div>
