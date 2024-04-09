@@ -15,7 +15,7 @@ export default function Form() {
     const [note, setNote] = useState("");
     
     return(
-        <div className="w-[100%] h-screen flex flex-col items-center content-start text-black mb-[5%]">
+        <div className="w-full h-screen flex flex-col items-center content-start text-black mb-[5%]">
             <form className="mt-[4%] flex flex-col w-[50%] h-full">
                 <h2 className="p-[1%] font-semibold">Animal Name</h2>
                 <input className="bg-transparent border-2 w-[100%] p-[1.5%] text-black rounded-lg mb-[1%]" 

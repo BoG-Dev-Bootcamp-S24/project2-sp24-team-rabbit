@@ -61,8 +61,8 @@ export default function SideBar() {
     }
 
     return (
-        <div className="p-5 h-full border-r-2 border-gray-100 w-auto">
-            <div onClick={handleTrainingLogsClick} className={`flex border border-white rounded-lg items-center p-2 h-8 cursor-pointer ${trainingLogsActive ? 'bg-red-600' : 'bg-white hover:bg-gray-100'} `} style={{width: "170px"}}>
+        <div className="p-5 h-full border-r-2 border-gray-100" style={{width: `20%`}}>
+            <div onClick={handleTrainingLogsClick} className={`flex border border-white rounded-lg items-center p-2 h-8 cursor-pointer ${trainingLogsActive ? 'bg-red-600' : 'bg-white hover:bg-gray-100'} `}>
                 <Image className="ml-2 w-5" src={trainingLogsActive ? activeTrainingLogsLogo : inactiveTrainingLogsLogo}/>
                 <p className={`ml-2.5 text-sm font-medium ${trainingLogsActive ? 'text-white' : 'text-gray-600'}`}>Training logs</p>
             </div>

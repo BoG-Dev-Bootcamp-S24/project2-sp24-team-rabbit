@@ -29,7 +29,7 @@ export default function AnimalsList() {
     animalList[6] = animal
 
     return(
-        <div className="w-[100%] min-h-[100%]">
+        <div className="w-[100%]">
             <div className="w-[100%] border-b-2 pl-[2%] py-[1%] px-[10%] flex justify-between">
                 <h1 className="text-lg font-bold text-slate-500">Animals</h1>
                 {!formStatus && <button className="text-slate-500 w-[10.5%] flex justify-between items-center whitespace-nowrap" onClick={()=>
@@ -40,9 +40,7 @@ export default function AnimalsList() {
             </div>
             
             {formStatus ? 
-                <div className="min-h-[100%]">
-                    <Form type="animal"/>
-                </div> :
+                <Form type="animal"/> :
                 <div className="w-[100%] flex flex-row justify-start items-start flex-wrap text-black m-[3%]">
                     {animalList == null ? <div>Loading...</div> : animalList[0] == null ? <div>No Animals Found</div> : 
                         animalList.map((animal) => 
