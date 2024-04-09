@@ -22,7 +22,7 @@ export default function SideBar({adminAccess, currentPage, user}) {
     const [trainingLogsActive, setTrainingLogsActive] = useState(currentPage === "traininglogs");
     const [animalsActive, setAnimalsActive] = useState(currentPage === "animalslist");
     const [allTrainingActive, setAllTrainingActive] = useState(false);
-    const [allAnimalsActive, setAllAnimalsActive] = useState(false);
+    const [allAnimalsActive, setAllAnimalsActive] = useState(currentPage === "allanimals");
     const [allUsersActive, setAllUsersActive] = useState(false);
 
     const handleTrainingLogsClick = () => {
@@ -81,7 +81,9 @@ export default function SideBar({adminAccess, currentPage, user}) {
                         <div className="width-full  border-t-2 mb-3 mt-3 " ></div>
                         <p className="ml-2.5 font-semibold text-gray-700 mt-1 mb-3 text-sm ">Admin access</p>
                         <SidebarButton onClickFunc={handleAllTrainingsClick} inactiveImgSrc={inactiveAllTrainingLogo} activeImgSrc={activeAllTrainingLogo} activeBool={allTrainingActive} text={"All training"}/>
-                        <SidebarButton onClickFunc={handleAllAnimalsClick} inactiveImgSrc={inactiveAllAnimalsLogo} activeImgSrc={activeAllAnimalsLogo} activeBool={allAnimalsActive} text={"All animals"}/>
+                        <Link href="/allanimals">
+                            <SidebarButton onClickFunc={handleAllAnimalsClick} inactiveImgSrc={inactiveAllAnimalsLogo} activeImgSrc={activeAllAnimalsLogo} activeBool={allAnimalsActive} text={"All animals"}/>
+                        </Link>
                         <SidebarButton onClickFunc={handleAllUsersClick} inactiveImgSrc={inactiveAllUsersLogo} activeImgSrc={activeAllUsersLogo} activeBool={allUsersActive} text={"All users"}/>
                     </>
                 }
