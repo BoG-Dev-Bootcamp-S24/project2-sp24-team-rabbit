@@ -8,11 +8,12 @@ import TrainingLog from "@/components/TrainingLog";
 
 
 export default function TrainingLogs() {
+    const currentUser = "Philip";
     return (
         <div className="bg-white w-[100%] h-[100%] flex flex-col relative">
           <Navbar searchBar={true}/>
           <div className="w-full h-full flex flex-row">
-            <SideBar adminAccess={true} currentPage={"traininglogs"}/>
+            <SideBar adminAccess={true} currentPage={"traininglogs"} user={currentUser}/>
             <div className="flex flex-col w-full h-full">
                 <TrainingLog />
             </div>

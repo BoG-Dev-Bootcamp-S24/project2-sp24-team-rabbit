@@ -5,6 +5,7 @@ import Form from "../components/Form"
 import createNewLogo from "/public/images/createNewLogo.png"
 import React, { useState } from 'react'
 const inter = Inter({ subsets: ["latin"] });
+import TopBanner from "./TopBanner";
 
 export default function AnimalsList({user}) {
     const[formStatus, setFormStatus] = useState(false);
@@ -42,20 +43,12 @@ export default function AnimalsList({user}) {
 
     return (
         <div className="w-[100%] h-[100%] overflow-hidden">
-            <div className="flex flex-row border-b-2 pt-6 pb-2 h-auto w-[100%] justify-between items-end">
-                <p className="ml-6 font-medium text-2xl" style={{ color: "rgb(128, 116, 116)" }}>Animals</p>
-                {!formStatus && <button className="ml-1 font-medium flex flex-row items-center" style={{ color: "rgb(128, 116, 116)" }} onClick={() =>
-                    { setFormStatus(true) }}>
-                    <Image src={createNewLogo} className="w-[12%]" />
-                    <span className="ml-1 mr-5">Create new</span>
-                </button>}
-            </div>
-    
+            <TopBanner formStatusProp={formStatus} setFormStatusProp={setFormStatus}/>
             {formStatus ?
                 <Form type="animal" /> :
                 <div className="w-[100%] flex flex-row justify-start items-start flex-wrap text-black ml-[3%] pt-10 overflow-y-auto overflow-x-hidden" style={{ maxHeight: 'calc(100vh - 150px)' }}>
                     {animalList == null ? <div>Loading...</div> : animalList[0] == null ? <div>No Animals Found</div> :
-                        (animalList).filter((currentAnimal) => (currentAnimal.owner === "Nathan")).map((animal, index) =>
+                        (animalList).filter((currentAnimal) => (currentAnimal.owner === user)).map((animal, index) =>
                             <Animal animal={animal} key={index} /> 
                         )}
                     <div className="w-full h-[10px]"></div>
