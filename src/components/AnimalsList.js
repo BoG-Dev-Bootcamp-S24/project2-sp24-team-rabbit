@@ -21,8 +21,20 @@ export default function AnimalsList() {
     }
 
     animalList[0] = animal
-    animalList[1] = animal
-    animalList[2] = animal
+    animalList[1] = {
+        imageURL:"https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/wp-content/uploads/2023/07/top-20-small-dog-breeds.jpeg.jpg",
+        name:"Joe",
+        breed:"German Shepherd",
+        owner:"Philip",
+        hours:"38"
+    }
+    animalList[2] = {
+        imageURL: "https://www.thesprucepets.com/thmb/hxWjs7evF2hP1Fb1c1HAvRi_Rw0=/2765x0/filters:no_upscale():strip_icc()/chinese-dog-breeds-4797219-hero-2a1e9c5ed2c54d00aef75b05c5db399c.jpg",
+        name:"Isaiah",
+        breed:"Pug",
+        owner:"John",
+        hours:"12"
+    }
     animalList[3] = animal
     animalList[4] = animal
     animalList[5] = animal
@@ -43,7 +55,7 @@ export default function AnimalsList() {
                 <Form type="animal"/> :
                 <div className="w-[100%] flex flex-row justify-start items-start flex-wrap text-black m-[3%]">
                     {animalList == null ? <div>Loading...</div> : animalList[0] == null ? <div>No Animals Found</div> : 
-                        animalList.map((animal, index) => 
+                        (animalList).filter((currentAnimal) => (currentAnimal.owner === "Nathan")).map((animal, index) => 
                         <Animal animal={animal}/>
                     )}
                 </div>
