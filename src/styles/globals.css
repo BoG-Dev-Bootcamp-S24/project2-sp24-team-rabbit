@@ -11,3 +11,8 @@ body,
   padding: 0;
   overflow: hidden;
 }
+
+@font-face {
+  font-family: 'LeagueGothic';
+  src: url('/public/fonts/LeagueGothic.ttf') format('truetype');
+}
