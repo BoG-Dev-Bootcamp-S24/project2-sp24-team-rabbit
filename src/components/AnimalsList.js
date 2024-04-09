@@ -6,7 +6,7 @@ import createNewLogo from "/public/images/createNewLogo.png"
 import React, { useState } from 'react'
 const inter = Inter({ subsets: ["latin"] });
 
-export default function AnimalsList() {
+export default function AnimalsList({user}) {
     const[formStatus, setFormStatus] = useState(false);
     let animalList = null;
     //set animalList = database list
@@ -40,31 +40,27 @@ export default function AnimalsList() {
     animalList[5] = animal
     animalList[6] = animal
 
-    return(
-        <div className="w-[100%] h-[100%] overflow-y-auto overflow-x-hidden">
+    return (
+        <div className="w-[100%] h-[100%] overflow-hidden">
             <div className="flex flex-row border-b-2 pt-6 pb-2 h-auto w-[100%] justify-between items-end">
-                <p className="ml-6 font-medium text-2xl" style={{color: "rgb(128, 116, 116)"}}>Animals</p>
-                {!formStatus && <button className="ml-1 font-medium flex flex-row items-center" style={{color: "rgb(128, 116, 116)"}} onClick={()=>
-                    {setFormStatus(true)}}>
-                    <Image src={createNewLogo} className="w-[12%]"/>
+                <p className="ml-6 font-medium text-2xl" style={{ color: "rgb(128, 116, 116)" }}>Animals</p>
+                {!formStatus && <button className="ml-1 font-medium flex flex-row items-center" style={{ color: "rgb(128, 116, 116)" }} onClick={() =>
+                    { setFormStatus(true) }}>
+                    <Image src={createNewLogo} className="w-[12%]" />
                     <span className="ml-1 mr-5">Create new</span>
-                </button>}          
+                </button>}
             </div>
-            
-            {formStatus ? 
-                <Form type="animal"/> :
-                <div className="w-[100%] flex flex-row justify-start items-start flex-wrap text-black m-[3%]">
-                    {animalList == null ? <div>Loading...</div> : animalList[0] == null ? <div>No Animals Found</div> : 
-                        (animalList).filter((currentAnimal) => (currentAnimal.owner === "Nathan")).map((animal, index) => 
-                        <Animal animal={animal}/>
-                    )}
+    
+            {formStatus ?
+                <Form type="animal" /> :
+                <div className="w-[100%] flex flex-row justify-start items-start flex-wrap text-black ml-[3%] pt-10 overflow-y-auto overflow-x-hidden" style={{ maxHeight: 'calc(100vh - 150px)' }}>
+                    {animalList == null ? <div>Loading...</div> : animalList[0] == null ? <div>No Animals Found</div> :
+                        (animalList).filter((currentAnimal) => (currentAnimal.owner === "Nathan")).map((animal, index) =>
+                            <Animal animal={animal} key={index} /> 
+                        )}
+                    <div className="w-full h-[10px]"></div>
                 </div>
             }
-
-            <div className="w-full h-[50px]">
-
-            </div>
-
         </div>
     )
 }
