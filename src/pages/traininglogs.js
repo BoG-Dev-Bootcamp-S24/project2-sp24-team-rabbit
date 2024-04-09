@@ -8,7 +8,7 @@ import TrainingLog from "@/components/TrainingLog";
 
 
 export default function TrainingLogs() {
-    const currentUser = "Philip";
+    const currentUser = "Nathan";
     return (
         <div className="bg-white w-[100%] h-[100%] flex flex-col relative">
           <Navbar searchBar={true}/>
