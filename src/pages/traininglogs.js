@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import quarterCircle from '/public/images/quarterCircle.png';
 import Navbar from "@/components/Navbar/Navbar.js";
 import SideBar from "@/components/Sidebar";
 import TopBanner from "@/components/TopBanner";
@@ -15,7 +14,7 @@ export default function TrainingLogs() {
           <div className="w-full h-full flex flex-row">
             <SideBar adminAccess={true} currentPage={"traininglogs"} user={currentUser}/>
             <div className="flex flex-col w-full h-full">
-                <TrainingLog allTraining={false}/>
+                <TrainingLog user={currentUser} allTraining={false} />
             </div>
           </div>
         </div>

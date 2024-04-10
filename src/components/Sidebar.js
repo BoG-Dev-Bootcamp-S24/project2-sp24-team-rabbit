@@ -66,7 +66,7 @@ export default function SideBar({adminAccess, currentPage, user}) {
     }
 
     return (
-        <div className="p-5 h-full border-r-2 border-gray-100 flex flex-col w-full justify-between" style={{width: `18%`}}>
+        <div className="p-5 h-[715px] border-r-2 border-gray-100 flex flex-col w-full justify-between" style={{width: `18%`}}>
             <div className="w-full">
                 
                 <Link href="/traininglogs">
