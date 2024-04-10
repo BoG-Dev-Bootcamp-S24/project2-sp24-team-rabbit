@@ -21,9 +21,9 @@ export default function SideBar({adminAccess, currentPage, user}) {
 
     const [trainingLogsActive, setTrainingLogsActive] = useState(currentPage === "traininglogs");
     const [animalsActive, setAnimalsActive] = useState(currentPage === "animalslist");
-    const [allTrainingActive, setAllTrainingActive] = useState(false);
+    const [allTrainingActive, setAllTrainingActive] = useState(currentPage === "alltraining");
     const [allAnimalsActive, setAllAnimalsActive] = useState(currentPage === "allanimals");
-    const [allUsersActive, setAllUsersActive] = useState(false);
+    const [allUsersActive, setAllUsersActive] = useState(currentPage === "allusers");
 
     const handleTrainingLogsClick = () => {
         setTrainingLogsActive(true);
@@ -80,11 +80,15 @@ export default function SideBar({adminAccess, currentPage, user}) {
                     <>
                         <div className="width-full  border-t-2 mb-3 mt-3 " ></div>
                         <p className="ml-2.5 font-semibold text-gray-700 mt-1 mb-3 text-sm ">Admin access</p>
-                        <SidebarButton onClickFunc={handleAllTrainingsClick} inactiveImgSrc={inactiveAllTrainingLogo} activeImgSrc={activeAllTrainingLogo} activeBool={allTrainingActive} text={"All training"}/>
+                        <Link href="/alltraining">
+                            <SidebarButton onClickFunc={handleAllTrainingsClick} inactiveImgSrc={inactiveAllTrainingLogo} activeImgSrc={activeAllTrainingLogo} activeBool={allTrainingActive} text={"All training"}/>
+                        </Link>
                         <Link href="/allanimals">
                             <SidebarButton onClickFunc={handleAllAnimalsClick} inactiveImgSrc={inactiveAllAnimalsLogo} activeImgSrc={activeAllAnimalsLogo} activeBool={allAnimalsActive} text={"All animals"}/>
                         </Link>
-                        <SidebarButton onClickFunc={handleAllUsersClick} inactiveImgSrc={inactiveAllUsersLogo} activeImgSrc={activeAllUsersLogo} activeBool={allUsersActive} text={"All users"}/>
+                        <Link href="/allusers">
+                            <SidebarButton onClickFunc={handleAllUsersClick} inactiveImgSrc={inactiveAllUsersLogo} activeImgSrc={activeAllUsersLogo} activeBool={allUsersActive} text={"All users"}/>
+                        </Link>
                     </>
                 }
             </div>
