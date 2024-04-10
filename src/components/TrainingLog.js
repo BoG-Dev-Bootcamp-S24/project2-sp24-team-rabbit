@@ -9,66 +9,63 @@ import TrainingLogItem from './TrainingLogItem';
 import Link from 'next/link';
 import TrainingForm from "../components/TrainingForm"
 
-
-
-export default function TrainingLog() {
+export default function TrainingLog({user, allTraining}) {
 
     const [logs, setLogs] = useState([]);
-    const[formStatus, setFormStatus] = useState(false);
+    const [formStatus, setFormStatus] = useState(false);
   
     useEffect(() => {
       const mockedLogs = [
         {
           id: 1,
-          title: 'Complete Sit Lessons',
+          title: 'Complete sit lessons',
           date: '2023-10-20T14:48:00.000Z',
-          userName: 'User 1',
-          animalName: 'Animal 1',
-          breed: 'Breed 1',
+          userName: 'Nathan',
+          animalName: 'Jeff',
+          breed: 'Golden Retriever',
           hours: 2,
           description: 'First training session went well.',
         },
         {
             id: 2,
-            title: 'Complete Sit Lessons',
-            date: '2023-10-20T14:48:00.000Z',
-            userName: 'User 1',
-            animalName: 'Animal 1',
-            breed: 'Breed 1',
-            hours: 2,
-            description: 'First training session went well.',
+            title: 'Intruder training',
+            date: '2023-10-23T14:48:00.000Z',
+            userName: 'Philip',
+            animalName: 'Isaiah',
+            breed: 'Border Collier',
+            hours: 4,
+            description: 'Unable to do so, improvement needed.',
           },
           {
-            id: 2,
-            title: 'Complete Sit Lessons',
-            date: '2023-10-20T14:48:00.000Z',
-            userName: 'User 1',
-            animalName: 'Animal 1',
-            breed: 'Breed 1',
-            hours: 2,
-            description: 'First training session went well.',
+            id: 3,
+            title: 'Potty train',
+            date: '2023-10-16T14:48:00.000Z',
+            userName: 'Philip',
+            animalName: 'Nick',
+            breed: 'Chihuahua',
+            hours: 1,
+            description: 'Pretty alright. Needs some work, but good job overall.',
           },
           {
-            id: 2,
-            title: 'Complete Sit Lessons',
-            date: '2023-10-20T14:48:00.000Z',
-            userName: 'User 1',
-            animalName: 'Animal 1',
-            breed: 'Breed 1',
-            hours: 2,
-            description: 'First training session went well.',
+            id: 4,
+            title: 'Teach how to spin',
+            date: '2023-10-14T14:48:00.000Z',
+            userName: 'Nathan',
+            animalName: 'Jeff',
+            breed: 'Golden Retriever',
+            hours: 5,
+            description: 'Jeff spun! The goat.',
           },
           {
-            id: 2,
-            title: 'Complete Sit Lessons',
-            date: '2023-10-20T14:48:00.000Z',
-            userName: 'User 1',
-            animalName: 'Animal 1',
-            breed: 'Breed 1',
+            id: 5,
+            title: 'Scare away cats',
+            date: '2023-10-18T14:48:00.000Z',
+            userName: 'Nathan',
+            animalName: 'Anna',
+            breed: 'Huskie',
             hours: 2,
-            description: 'First training session went well.',
+            description: 'Anna is a dog. Why is she scared of cats!?',
           },
-          
       ];
   
       setTimeout(() => {
@@ -76,27 +73,19 @@ export default function TrainingLog() {
       }, 100);
     }, []);
 
-    return (<div className="w-[100%] h-[100%] overflow-y-auto overflow-x-hidden">
-        <div className="flex flex-row border-b-2 pt-6 pb-2 h-auto w-[100%] justify-between items-end">
-            <p className="ml-6 font-medium text-2xl" style={{color: "rgb(128, 116, 116)"}}>Training log</p>
-            <button className="ml-1 font-medium flex flex-row items-center" style={{color: "rgb(128, 116, 116)"}} onClick={() =>
-                    { setFormStatus(true) }}>
-                <Image src={createNewLogo} className="w-[12%]"/>
-                <span className="ml-1 mr-5">Create new</span>
-            </button> 
-        </div>
-        {formStatus ? <TrainingForm type="animal" /> : 
-        <div className="w-[100%]">
-        {logs.length > 0 && (
-            <div className="w-auto">
-            {logs.map((log) => (
-                <TrainingLogItem key={log.id} log={log} />
-            ))}
+    return (
+      <div className="w-[100%] overflow-auto">
+          <TopBanner formStatusProp={formStatus} setFormStatusProp={setFormStatus} title={allTraining ? "All training" : "Training"}/>
+          {formStatus ? 
+            <TrainingForm type="animal" /> : // training log item
+            <div className="w-[100%] flex flex-col items-center justify-start overflow-y-auto overflow-x-hidden pt-6">
+              {logs == null ? <div>Loading...</div> : logs[0] == null ? <div>No Training Logs Found</div> :
+                logs.filter((currentTrainingItem) => (currentTrainingItem.userName === user || allTraining)).map((log) => ( 
+                  <TrainingLogItem key={log.id} log={log} />
+                ))}
             </div>
-        )}
-        </div>
-        }
-
-    </div>)
+          }
+          <div className="h-[100px]"></div>
+      </div>
+    );
 }
-
