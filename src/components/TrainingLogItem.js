@@ -9,7 +9,7 @@ export default function TrainingLogItem({ log }) {
     const year = date.getFullYear();
     return (
 
-        <div className="bg-white shadow-lg items-center rounded-lg mb-4 flex overflow-hidden drop-shadow-lg w-5/6">
+        <div className="bg-white shadow-lg items-center rounded-lg mb-4 mt-4 flex drop-shadow-lg w-5/6">
 
         <div className="flex-none rounded-l-lg bg-blue-900 text-white p-6 mr-4">
             <div className="flex flex-col items-center">
