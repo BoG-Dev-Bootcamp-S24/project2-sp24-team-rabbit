@@ -14,8 +14,8 @@ export default function LogOut({name,adminBool,pfp}) {
                         { adminBool && <p className="text-sm text-slate-500">Admin</p> }
                     </div>
                     </div>
-                    <div className="">
-                        <Image src={logoutLogo} className="cursor-pointer w-5 mr-1"/>
+                    <div className="hover:bg-gray-100 p-2 flex justify-center rounded-md cursor-pointer">
+                        <Image src={logoutLogo} className="w-5"/>
                     </div>
             </div>
         </div>

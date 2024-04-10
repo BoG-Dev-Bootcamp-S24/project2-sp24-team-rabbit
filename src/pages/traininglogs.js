@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar.js";
-import SideBar from "@/components/Sidebar";
-import TopBanner from "@/components/TopBanner";
-import TrainingLog from "@/components/TrainingLog";
+import SideBar from "@/components/Sidebar/Sidebar";
+import TopBanner from "@/components/TopBanner/TopBanner";
+import TrainingLog from "@/components/TrainingPages/TrainingLog";
 
 
 export default function TrainingLogs() {

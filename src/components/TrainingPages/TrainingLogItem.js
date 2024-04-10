@@ -1,7 +1,7 @@
 import editButton from "/public/images/trainingLogCardEditButton.png";
 import Image from "next/image";
 
-export default function TrainingLogItem({ log }) {
+export default function TrainingLogItem({ log, allTraining }) {
     const date = new Date(log.date);
 
     const day = date.getDate();
@@ -20,10 +20,10 @@ export default function TrainingLogItem({ log }) {
                 <h3 className="font-semibold text-xl">
                     {log.title}
                     <span className="text-gray-500 text-xl font-light inline-block align-baseline ml-2">
-                        ({log.hours} hours)
+                        ({log.hours} hour{log.hours!==1 ? "s" : ""})
                     </span>
                 </h3>
-                <p className="text-gray-700 text-sm mt-1"><span>{log.animalName}</span>, {log.breed} · {log.userName}</p>
+                <p className="text-gray-700 mt-1"><span className="font-semibold">{log.animalName}</span>, {log.breed}{ allTraining && ("  ·  " + log.userName)}</p>
                 <p className="text-gray-500 mt-3 text-xs ">{log.description}</p>
             </div>
             <div className="flex-none mr-8">
