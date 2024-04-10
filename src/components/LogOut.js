@@ -7,8 +7,7 @@ export default function LogOut({name,adminBool,pfp}) {
             <div className="w-full border-t-2 mb-3" ></div>
             <div className="w-full flex flex-row justify-between items-center">
                 <div className="flex flex-row items-center">
-                    <div className="ml-1.5 rounded-full overflow-hidden mr-3">
-                        <Image src={pfp} className={`${adminBool ? "w-10" : "w-8"}`}/>
+                    <div className={`ml-1.5 rounded-full overflow-hidden mr-3 ${adminBool ? "w-10" : "w-8"} bg-red-600 flex items-center justify-center aspect-square text-white font-semibold text-xl`}>{name.substring(0, 1)}
                     </div>
                     <div className="flex flex-col">
                         <p className={`text-base font-semibold`}>{name}</p>

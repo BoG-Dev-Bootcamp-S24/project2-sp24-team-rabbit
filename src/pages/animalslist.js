@@ -9,14 +9,14 @@ import AnimalsListContainer from "@/components/AnimalsList";
 export default function AnimalsList() {
     const currentUser = "Nathan";
     return (
-        <div className="bg-white w-[100%] h-[100%] flex flex-col relative">
-          <Navbar searchBar={true}/>
-          <div className="w-full h-full flex flex-row">
-            <SideBar adminAccess={true} currentPage={"animalslist"} user={currentUser}/>
-            <div className="flex flex-col w-full h-full">
-              <AnimalsListContainer user={currentUser} allAnimals={false}/>
-            </div>
+      <div className="bg-white w-[100%] h-[100%] flex flex-col relative">
+        <Navbar searchBar={true}/>
+        <div className="w-full h-full flex flex-row">
+          <SideBar adminAccess={true} currentPage={"animalslist"} user={currentUser}/>
+          <div className="flex flex-col w-full h-full">
+            <AnimalsListContainer user={currentUser} allAnimals={false}/>
           </div>
         </div>
+      </div>
     )
 }
