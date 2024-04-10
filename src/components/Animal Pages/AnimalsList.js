@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import Animal from "../components/Animal"
-import Form from "../components/Form"
+import Animal from "./Animal"
+import Form from "./Form"
 import createNewLogo from "/public/images/createNewLogo.png"
 import React, { useState } from 'react'
 const inter = Inter({ subsets: ["latin"] });
-import TopBanner from "./TopBanner";
+import TopBanner from "../TopBanner/TopBanner";
 
 export default function AnimalsList({user, allAnimals}) {
     const[formStatus, setFormStatus] = useState(false);

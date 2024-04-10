@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar.js";
-import SideBar from "@/components/Sidebar";
-import TopBanner from "@/components/TopBanner";
+import SideBar from "@/components/Sidebar/Sidebar";
+import TopBanner from "@/components/TopBanner/TopBanner";
 import createNewLogo from "/public/images/createNewLogo.png"
 import { useState, useEffect } from 'react';
 import TrainingLogItem from './TrainingLogItem';
 import Link from 'next/link';
-import TrainingForm from "../components/TrainingForm"
+import TrainingForm from "./TrainingForm"
 
 export default function TrainingLog({user, allTraining}) {
 
@@ -75,13 +75,13 @@ export default function TrainingLog({user, allTraining}) {
 
     return (
       <div className="w-[100%] overflow-auto">
-          <TopBanner formStatusProp={formStatus} setFormStatusProp={setFormStatus} title={allTraining ? "All training" : "Training"}/>
+          <TopBanner formStatusProp={formStatus} setFormStatusProp={setFormStatus} title={allTraining ? "All training" : "Training logs"}/>
           {formStatus ? 
             <TrainingForm type="animal" /> : // training log item
             <div className="w-[100%] flex flex-col items-center justify-start overflow-y-auto overflow-x-hidden pt-6">
               {logs == null ? <div>Loading...</div> : logs[0] == null ? <div>No Training Logs Found</div> :
                 logs.filter((currentTrainingItem) => (currentTrainingItem.userName === user || allTraining)).map((log) => ( 
-                  <TrainingLogItem key={log.id} log={log} />
+                  <TrainingLogItem key={log.id} log={log} allTraining={allTraining} />
                 ))}
             </div>
           }
