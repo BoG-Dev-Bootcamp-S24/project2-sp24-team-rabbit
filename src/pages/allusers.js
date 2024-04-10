@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar/Navbar.js";
 import SideBar from "@/components/Sidebar";
 import TrainingLog from "@/components/TrainingLog";
 import TopBanner from "@/components/TopBanner";
+import AllUsersContainer from "@/components/allUsersContainer"
 
 
 export default function allUsers() {
@@ -15,6 +16,7 @@ export default function allUsers() {
             <SideBar adminAccess={true} currentPage={"allusers"} user={currentUser}/>
             <div className="flex flex-col w-full h-full">
                 <TopBanner formStatusProp={null} setFormStatusProp={null} title={"All users"}/>
+                <AllUsersContainer />
             </div>
           </div>
         </div>
