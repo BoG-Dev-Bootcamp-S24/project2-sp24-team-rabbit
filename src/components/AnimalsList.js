@@ -43,7 +43,7 @@ export default function AnimalsList({user, allAnimals}) {
 
     return (
         <div className="w-[100%] h-[100%] overflow-hidden">
-            <TopBanner formStatusProp={formStatus} setFormStatusProp={setFormStatus}/>
+            <TopBanner formStatusProp={formStatus} setFormStatusProp={setFormStatus} title={allAnimals ? "All animals" : "Animals"}/>
             {formStatus ?
                 <Form type="animal" /> :
                 <div className="w-[100%] flex flex-row justify-start items-start flex-wrap text-black ml-[3%] pt-10 overflow-y-auto overflow-x-hidden" style={{ maxHeight: 'calc(100vh - 150px)' }}>

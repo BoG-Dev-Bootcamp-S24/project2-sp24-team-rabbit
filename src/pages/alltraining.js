@@ -7,15 +7,15 @@ import TopBanner from "@/components/TopBanner";
 import TrainingLog from "@/components/TrainingLog";
 
 
-export default function TrainingLogs() {
+export default function allTraining() {
     const currentUser = "Nathan";
     return (
         <div className="bg-white w-[100%] h-[100%] flex flex-col relative">
           <Navbar searchBar={true}/>
           <div className="w-full h-full flex flex-row">
-            <SideBar adminAccess={true} currentPage={"traininglogs"} user={currentUser}/>
+            <SideBar adminAccess={true} currentPage={"alltraining"} user={currentUser}/>
             <div className="flex flex-col w-full h-full">
-                <TrainingLog allTraining={false}/>
+                <TrainingLog allTraining={true}/>
             </div>
           </div>
         </div>
