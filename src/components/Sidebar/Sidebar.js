@@ -58,6 +58,10 @@ export default function SideBar({adminAccess, currentPage, user}) {
         setAllTrainingActive(true);
         setAllAnimalsActive(false);
         setAllUsersActive(false);
+        router.push({
+            pathname: '/alltraining',
+            query: { user },
+          });
     }
 
     const handleAllAnimalsClick = () => {
@@ -66,6 +70,10 @@ export default function SideBar({adminAccess, currentPage, user}) {
         setAllTrainingActive(false);
         setAllAnimalsActive(true);
         setAllUsersActive(false);
+        router.push({
+            pathname: '/allanimals',
+            query: { user },
+          });
     }
 
     const handleAllUsersClick = () => {
@@ -74,6 +82,10 @@ export default function SideBar({adminAccess, currentPage, user}) {
         setAllTrainingActive(false);
         setAllAnimalsActive(false);
         setAllUsersActive(true);
+        router.push({
+            pathname: '/allusers',
+            query: { user },
+          });
     }
 
     return (
@@ -87,15 +99,9 @@ export default function SideBar({adminAccess, currentPage, user}) {
                     <>
                         <div className="width-full  border-t-2 mb-3 mt-3 " ></div>
                         <p className="ml-2.5 font-semibold text-gray-700 mt-1 mb-3 text-sm ">Admin access</p>
-                        <Link href="/alltraining">
-                            <SidebarButton onClickFunc={handleAllTrainingsClick} inactiveImgSrc={inactiveAllTrainingLogo} activeImgSrc={activeAllTrainingLogo} activeBool={allTrainingActive} text={"All training"}/>
-                        </Link>
-                        <Link href="/allanimals">
-                            <SidebarButton onClickFunc={handleAllAnimalsClick} inactiveImgSrc={inactiveAllAnimalsLogo} activeImgSrc={activeAllAnimalsLogo} activeBool={allAnimalsActive} text={"All animals"}/>
-                        </Link>
-                        <Link href="/allusers">
-                            <SidebarButton onClickFunc={handleAllUsersClick} inactiveImgSrc={inactiveAllUsersLogo} activeImgSrc={activeAllUsersLogo} activeBool={allUsersActive} text={"All users"}/>
-                        </Link>
+                        <SidebarButton onClickFunc={handleAllTrainingsClick} inactiveImgSrc={inactiveAllTrainingLogo} activeImgSrc={activeAllTrainingLogo} activeBool={allTrainingActive} text={"All training"}/>
+                        <SidebarButton onClickFunc={handleAllAnimalsClick} inactiveImgSrc={inactiveAllAnimalsLogo} activeImgSrc={activeAllAnimalsLogo} activeBool={allAnimalsActive} text={"All animals"}/>
+                        <SidebarButton onClickFunc={handleAllUsersClick} inactiveImgSrc={inactiveAllUsersLogo} activeImgSrc={activeAllUsersLogo} activeBool={allUsersActive} text={"All users"}/>
                     </>
                 }
             </div>

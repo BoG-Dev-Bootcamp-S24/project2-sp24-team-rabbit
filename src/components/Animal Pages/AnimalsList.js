@@ -6,13 +6,14 @@ import createNewLogo from "/public/images/createNewLogo.png"
 import React, { useState } from 'react'
 const inter = Inter({ subsets: ["latin"] });
 import TopBanner from "../TopBanner/TopBanner";
-
 export default function AnimalsList({user, allAnimals}) {
     const[formStatus, setFormStatus] = useState(false);
     let animalList = null;
     //set animalList = database list
     animalList = []
-
+    const toggleFormVisibility = () => {
+        setFormStatus(!formStatus);
+    };
     let animal = {
         imageURL:"https://hips.hearstapps.com/hmg-prod/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=0.752xw:1.00xh;0.175xw,0&resize=1200:*",
         name:"Jeff",
@@ -20,7 +21,6 @@ export default function AnimalsList({user, allAnimals}) {
         owner:"Nathan",
         hours:"20"
     }
-
     animalList[0] = animal
     animalList[1] = {
         imageURL:"https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/wp-content/uploads/2023/07/top-20-small-dog-breeds.jpeg.jpg",
@@ -40,19 +40,18 @@ export default function AnimalsList({user, allAnimals}) {
     animalList[4] = animal
     animalList[5] = animal
     animalList[6] = animal
-
     return (
         <div className="w-[100%] h-[100%] overflow-hidden">
             <TopBanner formStatusProp={formStatus} setFormStatusProp={setFormStatus} title={allAnimals ? "All animals" : "Animals"}/>
             {formStatus ?
-                <Form type="animal" /> :
+                <Form type="animal" toggleForm={toggleFormVisibility}/> :
                 <div className="w-[100%] flex flex-row justify-start items-start flex-wrap text-black ml-[3%] py-10 overflow-y-auto overflow-x-hidden" style={{ maxHeight: 'calc(100vh - 150px)' }}>
                     {animalList == null ? <div>Loading...</div> : animalList[0] == null ? <div>No Animals Found</div> :
                         (animalList).map((animal, index) =>
-                            <Animal animal={animal} key={index} /> 
+                            <Animal animal={animal} key={index} />
                         )}
                 </div>
             }
         </div>
-    );
+    )
 }

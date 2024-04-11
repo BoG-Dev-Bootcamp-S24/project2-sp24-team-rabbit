@@ -8,20 +8,20 @@ import { useState, useEffect } from 'react';
 import TrainingLogItem from './TrainingLogItem';
 import Link from 'next/link';
 import TrainingForm from "./TrainingForm"
-
 export default function TrainingLog({user, allTraining}) {
-
     const [logs, setLogs] = useState([]);
     const [formStatus, setFormStatus] = useState(false);
-  
+    const toggleFormVisibility = () => {
+      setFormStatus(!formStatus);
+    };
     useEffect(() => {
       const mockedLogs = [
         {
           id: 1,
           title: 'Complete sit lessons',
           date: '2023-10-20T14:48:00.000Z',
-          user: 'Nathan',
-          animal: 'Jeff',
+          userName: 'Nathan',
+          animalName: 'Jeff',
           breed: 'Golden Retriever',
           hours: 2,
           description: 'First training session went well.',
@@ -30,8 +30,8 @@ export default function TrainingLog({user, allTraining}) {
             id: 2,
             title: 'Intruder training',
             date: '2023-10-23T14:48:00.000Z',
-            user: 'Philip',
-            animal: 'Isaiah',
+            userName: 'Philip',
+            animalName: 'Isaiah',
             breed: 'Border Collier',
             hours: 4,
             description: 'Unable to do so, improvement needed.',
@@ -40,8 +40,8 @@ export default function TrainingLog({user, allTraining}) {
             id: 3,
             title: 'Potty train',
             date: '2023-10-16T14:48:00.000Z',
-            user: 'Philip',
-            animal: 'Nick',
+            userName: 'Philip',
+            animalName: 'Nick',
             breed: 'Chihuahua',
             hours: 1,
             description: 'Pretty alright. Needs some work, but good job overall.',
@@ -50,8 +50,8 @@ export default function TrainingLog({user, allTraining}) {
             id: 4,
             title: 'Teach how to spin',
             date: '2023-10-14T14:48:00.000Z',
-            user: 'Nathan',
-            animal: 'Jeff',
+            userName: 'Nathan',
+            animalName: 'Jeff',
             breed: 'Golden Retriever',
             hours: 5,
             description: 'Jeff spun! The goat.',
@@ -60,27 +60,26 @@ export default function TrainingLog({user, allTraining}) {
             id: 5,
             title: 'Scare away cats',
             date: '2023-10-18T14:48:00.000Z',
-            user: 'Nathan',
-            animal: 'Anna',
+            userName: 'Nathan',
+            animalName: 'Anna',
             breed: 'Huskie',
             hours: 2,
             description: 'Anna is a dog. Why is she scared of cats!?',
           },
       ];
-  
+      const sortedLogs = mockedLogs.sort((a, b) => new Date(a.date) - new Date(b.date));
       setTimeout(() => {
         setLogs(mockedLogs);
       }, 100);
     }, []);
-
     return (
       <div className="w-[100%] overflow-auto">
           <TopBanner formStatusProp={formStatus} setFormStatusProp={setFormStatus} title={allTraining ? "All training" : "Training logs"}/>
-          {formStatus ? 
-            <TrainingForm type="animal" /> : // training log item
+          {formStatus ?
+            <TrainingForm type="animal" toggleForm={toggleFormVisibility}/> :
             <div className="w-[100%] flex flex-col items-center justify-start overflow-y-auto overflow-x-hidden pt-6">
               {logs == null ? <div>Loading...</div> : logs[0] == null ? <div>No Training Logs Found</div> :
-                logs.map((log) => ( 
+                logs.map((log) => (
                   <TrainingLogItem key={log.id} log={log} allTraining={allTraining} />
                 ))}
             </div>
