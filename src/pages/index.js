@@ -1,8 +1,9 @@
 import { Inter } from "next/font/google";
-import Login from "../components/Login.js"
+import Login from "../components/LoginAndCreateAcc/Login.js"
 import quarterCircle from '/public/images/quarterCircle.png';
 import Image from "next/image";
 import Navbar from "@/components/Navbar/Navbar.js";
+import Link from 'next/link';
 
 
 export default function Home() {

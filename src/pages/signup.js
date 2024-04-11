@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import TopBanner from "../components/TopBanner.js"
-import CreateAccount from "../components/CreateAccount.js";
+import TopBanner from "../components/TopBanner/TopBanner.js"
+import CreateAccount from "../components/LoginAndCreateAcc/CreateAccount.js";
 import quarterCircle from '/public/images/quarterCircle.png';
 import Navbar from "@/components/Navbar/Navbar.js";
 
