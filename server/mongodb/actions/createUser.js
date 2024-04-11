@@ -1,5 +1,6 @@
 import connectDB from "..";
 import User from "../models/User";
+import bcrypt from "bcryptjs"
 
 export default async function createUser(data) {
     try {

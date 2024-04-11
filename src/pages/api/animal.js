@@ -21,19 +21,19 @@ export default async function handler(req, res) {
             if (!userID) {
                 return res.status(400).send("Please enter a userID");
             } else {
-                await getUserAnimals({userID});
-                return res.status(200).send("Success");
+                const animals = await getUserAnimals(userID);
+                return res.status(200).send(animals);
             }
         } catch (error) {
             return res.status(500).send("Failed to GET");
         }
     } else if (req.method === "PATCH") {
         try {
-            const {animal} = req.body;
+            const {animal, hours} = req.body;
             if (!animal) {
                 return res.status(400).send("Please ensure you have entered the animal appropriately");
             } else {
-                await updateHoursTrained({animal : animal});
+                await updateHoursTrained(animal, hours);
                 return res.status(200).send("Success");
             }
         } catch (error) {

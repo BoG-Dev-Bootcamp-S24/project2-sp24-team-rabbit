@@ -21,8 +21,8 @@ export default async function handler(req, res) {
             if (!userID) {
                 return res.status(400).send("Please enter a userID");
             } else {
-                await getUserLogs({userID});
-                return res.status(200).send("Success");
+                const logs = await getUserLogs(userID);
+                return res.status(200).send(logs);
             }
         } catch (error) {
             return res.status(500).send("Failed to GET");
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
             if (!logID || !hours) {
                 return res.status(400).send("Please ensure you have entered the training log and new hours appropriately");
             } else {
-                await updateTrainingLog({trainingLog : logID, newHours : hours});
+                await updateTrainingLog(logID, hours);
                 return res.status(200).send("Success");
             }
         } catch (error) {

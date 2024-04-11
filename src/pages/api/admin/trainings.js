@@ -1,4 +1,4 @@
-import getTrainingLogs from "../../../server/mongodb/actions/getTrainingLogs";
+import getTrainingLogs from "../../../../server/mongodb/actions/getTrainingLogs";
 
 export default async function handler(req, res) {
     if (req.method === "GET") {

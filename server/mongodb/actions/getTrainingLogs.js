@@ -1,7 +1,7 @@
 import connectDB from "..";
 import TrainingLog from "../models/TrainingLog";
 
-export default async function getAllLogs() {
+export default async function getTrainingLogs() {
   try {
     await connectDB();
 
