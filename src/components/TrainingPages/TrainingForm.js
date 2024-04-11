@@ -5,7 +5,9 @@ import React, { useState } from 'react'
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function TrainingForm() {
+
+
+export default function TrainingForm({ toggleForm }) {
     const [title, setTitle] = useState("");
     const [animal, setAnimal] = useState("");
     const [hours, setHours] = useState("");
@@ -13,11 +15,58 @@ export default function TrainingForm() {
     const [day, setDay] = useState("");
     const [year, setYear] = useState("");
     const [note, setNote] = useState("");
+
+    const handleClearOrSave = async () => {
+        toggleForm();
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if (!title || !animal || !hours || !month || !day || !year || !note) {
+            alert('Please fill out all fields.');
+            return;
+        }
+    
+
+        const date = new Date(`${month} ${day}, ${year}`).toISOString();
+
+        const formData = {
+            user: "User ID or name here",
+            animal,
+            title,
+            date,
+            description: note,
+            hours: parseInt(hours),
+        };
+
+        try {
+            const response = await fetch('http://localhost:3000/api/training', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const result = await response.text();
+            console.log(result);
+            alert('Form submitted successfully!');
+            toggleForm();
+        } catch (error) {
+            console.error('Failed to submit the form:', error);
+            alert('There was a problem with your submission. Please try again.');
+        }
+    };
     
     return(
         <div className="w-full h-full flex flex-col items-center content-start text-black border">
             <div className="w-full h-full overflow-y-auto flex justify-center pb-[10%]">
-                <form className="mt-[2%] flex flex-col w-[50%] h-full">
+                <form className="mt-[2%] flex flex-col w-[50%] h-full" onSubmit={handleSubmit}>
                     <h2 className="p-[1%] font-semibold">Title</h2>
                     <input className="bg-transparent border-2 w-[100%] p-[1.5%] text-black rounded-lg mb-[1%]" 
                     placeholder="Name" onChange={(event) => setTitle(event.target.value)}/>
@@ -68,8 +117,8 @@ export default function TrainingForm() {
                     type="text" placeholder="Note" onChange={(event) => setNote(event.target.value)}/>
 
                     <div className="w-[100%] flex flex-row justify-start mb-20">
-                        <button type="submit" className="text-xl font-bold mt-[7%] w-[25%] p-[1%] rounded-md border-2 border-red-600 text-red-600 mr-[5%]"
-                        onClick={() => false}>Clear</button>
+                        <button type="button" className="text-xl font-bold mt-[7%] w-[25%] p-[1%] rounded-md border-2 border-red-600 text-red-600 mr-[5%]"
+                        onClick={handleClearOrSave}>Return</button>
                         <button type="submit" className="text-white text-xl font-bold mt-[7%] w-[25%] p-[1%] rounded-md bg-red-600"
                         onClick={() => false}>Save</button>
                     </div>

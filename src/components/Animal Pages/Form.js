@@ -14,10 +14,44 @@ export default function Form() {
     const [year, setYear] = useState("");
     const [note, setNote] = useState("");
     
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if (!name || !breed || !hours || !month || !day || !year || !note) {
+            alert('Please fill out all fields.');
+            return;
+        }
+
+        const formData = {
+            name,
+            breed,
+            hoursTrained: hours,
+            description: note,
+        };
+
+        try {
+            const response = await fetch('http://localhost:3000/api/animal', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            console.log('Form submitted successfully');
+        } catch (error) {
+            console.error('Failed to submit the form:', error);
+        }
+    };
+
     return(
         <div className="w-full h-full flex flex-col items-center content-start text-black border">
             <div className="w-full h-full overflow-y-auto flex justify-center pb-[10%]">
-                <form className="mt-[2%] flex flex-col w-[50%] h-full">
+                <form className="mt-[2%] flex flex-col w-[50%] h-full" onSubmit={handleSubmit}>
                     <h2 className="p-[1%] font-semibold">Animal Name</h2>
                     <input className="bg-transparent border-2 w-[100%] p-[1.5%] text-black rounded-lg mb-[1%]" 
                     placeholder="Name" onChange={(event) => setName(event.target.value)}/>
@@ -68,7 +102,7 @@ export default function Form() {
                     type="text" placeholder="Note" onChange={(event) => setNote(event.target.value)}/>
 
                     <div className="w-[100%] flex flex-row justify-start mb-20">
-                        <button type="submit" className="text-xl font-bold mt-[7%] w-[25%] p-[1%] rounded-md border-2 border-red-600 text-red-600 mr-[5%]"
+                        <button type="button" className="text-xl font-bold mt-[7%] w-[25%] p-[1%] rounded-md border-2 border-red-600 text-red-600 mr-[5%]"
                         onClick={() => false}>Clear</button>
                         <button type="submit" className="text-white text-xl font-bold mt-[7%] w-[25%] p-[1%] rounded-md bg-red-600"
                         onClick={() => false}>Save</button>

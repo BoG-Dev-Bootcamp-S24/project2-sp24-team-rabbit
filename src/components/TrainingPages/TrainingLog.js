@@ -13,6 +13,10 @@ export default function TrainingLog({user, allTraining}) {
 
     const [logs, setLogs] = useState([]);
     const [formStatus, setFormStatus] = useState(false);
+
+    const toggleFormVisibility = () => {
+      setFormStatus(!formStatus);
+    };
   
     useEffect(() => {
       const mockedLogs = [
@@ -68,6 +72,8 @@ export default function TrainingLog({user, allTraining}) {
           },
       ];
   
+      const sortedLogs = mockedLogs.sort((a, b) => new Date(a.date) - new Date(b.date));
+
       setTimeout(() => {
         setLogs(mockedLogs);
       }, 100);
@@ -77,7 +83,7 @@ export default function TrainingLog({user, allTraining}) {
       <div className="w-[100%] overflow-auto">
           <TopBanner formStatusProp={formStatus} setFormStatusProp={setFormStatus} title={allTraining ? "All training" : "Training logs"}/>
           {formStatus ? 
-            <TrainingForm type="animal" /> : // training log item
+            <TrainingForm type="animal" toggleForm={toggleFormVisibility}/> :
             <div className="w-[100%] flex flex-col items-center justify-start overflow-y-auto overflow-x-hidden pt-6">
               {logs == null ? <div>Loading...</div> : logs[0] == null ? <div>No Training Logs Found</div> :
                 logs.filter((currentTrainingItem) => (currentTrainingItem.userName === user || allTraining)).map((log) => ( 

@@ -4,11 +4,11 @@ import updateHoursTrained from "../../../server/mongodb/actions/updateHoursTrain
 export default async function handler(req, res) {
     if (req.method === "POST") {
         try {
-            const {name, breed, owner, hoursTrained, profilePicture} = req.body;
-            if (!name || !breed || !owner || !hoursTrained || !profilePicture) {
+            const {name, breed, hoursTrained, note} = req.body;
+            if (!name || !breed || !hoursTrained || !note) {
                 return res.status(400).send("Please check body and enter all required fields appropriately");
             } else {
-                await createAnimal({name, breed, owner, hoursTrained, profilePicture});
+                await createAnimal({name, breed, hoursTrained, note});
                 return res.status(200).send("Success");
             }
         } catch (error) {

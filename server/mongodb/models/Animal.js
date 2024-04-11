@@ -8,17 +8,12 @@ const animalSchema = new mongoose.Schema({
     breed : {
         type : String,
         required : true,
-    }, 
-    owner : {
-        type : String,
-        required : true,
-        ref : 'User'
     },
     hoursTrained : {
         type : Number,
         required : true,
     },
-    profilePicture : {
+    description : {
         type : String,
         required : true,
     },

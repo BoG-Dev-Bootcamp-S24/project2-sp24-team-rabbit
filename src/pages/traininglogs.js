@@ -12,7 +12,7 @@ export default function TrainingLogs() {
         <div className="bg-white w-[100%] h-[100%] flex flex-col relative">
           <Navbar searchBar={true}/>
           <div className="w-full h-full flex flex-row">
-            <SideBar adminAccess={true} currentPage={"traininglogs"} user={currentUser}/>
+            <SideBar adminAccess={false} currentPage={"traininglogs"} user={currentUser}/>
             <div className="flex flex-col w-full h-full">
                 <TrainingLog user={currentUser} allTraining={false} />
             </div>
