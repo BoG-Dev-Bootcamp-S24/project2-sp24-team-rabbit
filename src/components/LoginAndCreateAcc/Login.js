@@ -36,12 +36,11 @@ export default function Login() {
         //Reroute to animallist page
         router.push({
           pathname: '/animalslist',
-          query: { user: JSON.stringify(user) },
+          query: { user: JSON.stringify(user)},
         });
       } else {
         console.error("Login failed in response:", response.statusText);
         if (response.status === 500) {
-          // alert("Invalid Login!! Please check you entered the correct email and password")
           setLoginStatus(false);
         }
       }

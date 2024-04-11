@@ -48,7 +48,7 @@ export default function AnimalsList({user, allAnimals}) {
                 <Form type="animal" /> :
                 <div className="w-[100%] flex flex-row justify-start items-start flex-wrap text-black ml-[3%] py-10 overflow-y-auto overflow-x-hidden" style={{ maxHeight: 'calc(100vh - 150px)' }}>
                     {animalList == null ? <div>Loading...</div> : animalList[0] == null ? <div>No Animals Found</div> :
-                        (animalList).filter((currentAnimal) => (currentAnimal.owner === user || allAnimals)).map((animal, index) =>
+                        (animalList).map((animal, index) =>
                             <Animal animal={animal} key={index} /> 
                         )}
                 </div>

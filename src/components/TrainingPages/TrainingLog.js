@@ -20,8 +20,8 @@ export default function TrainingLog({user, allTraining}) {
           id: 1,
           title: 'Complete sit lessons',
           date: '2023-10-20T14:48:00.000Z',
-          userName: 'Nathan',
-          animalName: 'Jeff',
+          user: 'Nathan',
+          animal: 'Jeff',
           breed: 'Golden Retriever',
           hours: 2,
           description: 'First training session went well.',
@@ -30,8 +30,8 @@ export default function TrainingLog({user, allTraining}) {
             id: 2,
             title: 'Intruder training',
             date: '2023-10-23T14:48:00.000Z',
-            userName: 'Philip',
-            animalName: 'Isaiah',
+            user: 'Philip',
+            animal: 'Isaiah',
             breed: 'Border Collier',
             hours: 4,
             description: 'Unable to do so, improvement needed.',
@@ -40,8 +40,8 @@ export default function TrainingLog({user, allTraining}) {
             id: 3,
             title: 'Potty train',
             date: '2023-10-16T14:48:00.000Z',
-            userName: 'Philip',
-            animalName: 'Nick',
+            user: 'Philip',
+            animal: 'Nick',
             breed: 'Chihuahua',
             hours: 1,
             description: 'Pretty alright. Needs some work, but good job overall.',
@@ -50,8 +50,8 @@ export default function TrainingLog({user, allTraining}) {
             id: 4,
             title: 'Teach how to spin',
             date: '2023-10-14T14:48:00.000Z',
-            userName: 'Nathan',
-            animalName: 'Jeff',
+            user: 'Nathan',
+            animal: 'Jeff',
             breed: 'Golden Retriever',
             hours: 5,
             description: 'Jeff spun! The goat.',
@@ -60,8 +60,8 @@ export default function TrainingLog({user, allTraining}) {
             id: 5,
             title: 'Scare away cats',
             date: '2023-10-18T14:48:00.000Z',
-            userName: 'Nathan',
-            animalName: 'Anna',
+            user: 'Nathan',
+            animal: 'Anna',
             breed: 'Huskie',
             hours: 2,
             description: 'Anna is a dog. Why is she scared of cats!?',
@@ -80,7 +80,7 @@ export default function TrainingLog({user, allTraining}) {
             <TrainingForm type="animal" /> : // training log item
             <div className="w-[100%] flex flex-col items-center justify-start overflow-y-auto overflow-x-hidden pt-6">
               {logs == null ? <div>Loading...</div> : logs[0] == null ? <div>No Training Logs Found</div> :
-                logs.filter((currentTrainingItem) => (currentTrainingItem.userName === user || allTraining)).map((log) => ( 
+                logs.map((log) => ( 
                   <TrainingLogItem key={log.id} log={log} allTraining={allTraining} />
                 ))}
             </div>

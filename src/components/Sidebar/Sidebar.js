@@ -16,8 +16,11 @@ import logoutLogo from "/public/images/logoutLogo.png"
 import SidebarButton from "./SidebarButton";
 import LogOut from "./LogOut";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function SideBar({adminAccess, currentPage, user}) {
+
+    const router = useRouter();
 
     const [trainingLogsActive, setTrainingLogsActive] = useState(currentPage === "traininglogs");
     const [animalsActive, setAnimalsActive] = useState(currentPage === "animalslist");
@@ -31,6 +34,10 @@ export default function SideBar({adminAccess, currentPage, user}) {
         setAllTrainingActive(false);
         setAllAnimalsActive(false);
         setAllUsersActive(false);
+        router.push({
+            pathname: '/traininglogs',
+            query: { user },
+          });
     }
     
     const handleAnimalsClick = () => {
@@ -39,6 +46,10 @@ export default function SideBar({adminAccess, currentPage, user}) {
         setAllTrainingActive(false);
         setAllAnimalsActive(false);
         setAllUsersActive(false);
+        router.push({
+            pathname: '/animalslist',
+            query: { user },
+          });
     }
 
     const handleAllTrainingsClick = () => {
@@ -68,14 +79,10 @@ export default function SideBar({adminAccess, currentPage, user}) {
     return (
         <div className="p-5 h-[715px] border-r-2 border-gray-100 flex flex-col w-full justify-between" style={{width: `18%`}}>
             <div className="w-full">
+                <SidebarButton onClickFunc={handleTrainingLogsClick} inactiveImgSrc={inactiveTrainingLogsLogo} activeImgSrc={activeTrainingLogsLogo} activeBool={trainingLogsActive} text={"Training logs"}/>
+                <SidebarButton onClickFunc={handleAnimalsClick} inactiveImgSrc={inactiveAnimalLogo} activeImgSrc={activeAnimalsLogo} activeBool={animalsActive} text={"Animals"}/>
                 
-                <Link href="/traininglogs">
-                    <SidebarButton onClickFunc={handleTrainingLogsClick} inactiveImgSrc={inactiveTrainingLogsLogo} activeImgSrc={activeTrainingLogsLogo} activeBool={trainingLogsActive} text={"Training logs"}/>
-                </Link>
-                <Link href="/animalslist">
-                    <SidebarButton onClickFunc={handleAnimalsClick} inactiveImgSrc={inactiveAnimalLogo} activeImgSrc={activeAnimalsLogo} activeBool={animalsActive} text={"Animals"}/>
-                </Link>
-                
+
                 {   adminAccess &&
                     <>
                         <div className="width-full  border-t-2 mb-3 mt-3 " ></div>
@@ -92,7 +99,7 @@ export default function SideBar({adminAccess, currentPage, user}) {
                     </>
                 }
             </div>
-            <LogOut name={user} adminBool={adminAccess} pfp={profilePic}/>
+            <LogOut name={user ? JSON.parse(user).fullName : ''} adminBool={adminAccess} pfp={profilePic}/>
         </div>
     )
 }

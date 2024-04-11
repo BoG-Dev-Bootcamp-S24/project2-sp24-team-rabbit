@@ -8,9 +8,8 @@ import { useRouter } from "next/router";
 
 
 export default function AnimalsList() {
-    // const router = useRouter();
-    // const user = router.query.user;
-    const user = "Nathan"
+    const router = useRouter();
+    const user = router.query.user;
     return (
       <div className="bg-white w-[100%] h-[100%] flex flex-col relative">
         <Navbar searchBar={true}/>
