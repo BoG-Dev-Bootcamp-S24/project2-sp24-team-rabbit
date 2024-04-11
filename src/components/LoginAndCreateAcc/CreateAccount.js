@@ -49,7 +49,7 @@ export default function CreateAccount() {
             
         } catch (error) {
             console.error('Failed to submit the form:', error);
-            alert('There was a problem with your submission. Please try again.' + error);
+            alert('There was a problem with your submission.\n' + error.message);
         }
     };
 
