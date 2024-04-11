@@ -1,10 +1,12 @@
 import connectDB from "..";
 import User from "../models/User";
+import bcrypt from "bcrypt";
 
 export default async function createUser(data) {
     try {
         await connectDB();
-        const {fullName, email, password, admin} = data;
+        let {fullName, email, password, admin} = data;
+        console.log(typeof(password))
         password = await bcrypt.hash(password, 10);
         const user = new User({fullName, email, password, admin});
         await user.save();
