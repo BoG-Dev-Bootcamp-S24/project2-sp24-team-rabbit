@@ -3,7 +3,8 @@ import Link from 'next/link'
 import { Inter } from "next/font/google";
 import React, { useState } from 'react'
 import { useRouter } from 'next/router';
-import verifyUser from "../../../server/mongodb/actions/verifyUser";
+import userExists from "../../../server/mongodb/actions/userExists.js";
+import verifyUser from "../../../server/mongodb/actions/verifyUser.js";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,10 +26,6 @@ export default function CreateAccount() {
             return;
         }
 
-        await connectDB();
-        const user = await User.findOne({ email });
-        if (!user) {
-
         const formData = {
             fullName: currName,
             email: currEmail,
@@ -44,7 +41,7 @@ export default function CreateAccount() {
                 body: JSON.stringify(formData),
             });
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error(await response.text());
             }
             const result = await response.text();
             console.log(result);
@@ -53,7 +50,7 @@ export default function CreateAccount() {
 
         } catch (error) {
             console.error('Failed:', error);
-            alert('There was a problem with your submission. Please try again.');
+            alert('There was a problem with your submission. ' + error);
         }
     };
 
@@ -75,7 +72,7 @@ export default function CreateAccount() {
                 <input onClick={() => setAdmin(!admin)} type="checkbox" className="border border-red-600 accent-red-600 mt-4 checked:bg-rd-600 h-5 w-5"/>
                 <div className="text-black ml-3 mt-3.5"> Admin Access </div>
             </div>
-            <button type="submit" className="text-white text-xl font-bold mt-[7%] w-[100] p-[1%] rounded-lg bg-red-600">Sign up</button>
+            <button className="text-white text-xl font-bold mt-[7%] w-[100] p-[1%] rounded-lg bg-red-600">Sign up</button>
         </form>
 
         <div className="flex flex-row whitespace-nowrap mt-[7%]">

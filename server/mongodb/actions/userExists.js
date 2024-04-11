@@ -15,5 +15,6 @@ export default async function userExists(email) {
         }
     } catch (error) {
         console.log(error);
+        throw new Error("Network response was not okay" + error)
     }
 }
