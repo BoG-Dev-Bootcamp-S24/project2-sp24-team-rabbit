@@ -25,7 +25,7 @@ export default function Form() {
         const formData = {
             name,
             breed,
-            hoursTrained: hours,
+            hoursTrained: parseInt(hours),
             description: note,
         };
 
