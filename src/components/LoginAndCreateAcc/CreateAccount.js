@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from 'next/link'
 import { Inter } from "next/font/google";
 import React, { useState } from 'react'
+import userExists from "../../../server/mongodb/actions/userExists.js";
+import { useRouter } from "next/router.js";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,6 +13,8 @@ export default function CreateAccount() {
     const [currPass, setCurrPass] = useState("");
     const [currVerifyPass, setCurrVerifyPass] = useState("");
     const [admin, setAdmin] = useState(false);
+
+    const router = useRouter();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -40,7 +44,8 @@ export default function CreateAccount() {
             }
             const result = await response.text();
             console.log(result);
-            alert('Form submitted successfully! Please login now');
+            alert('Account created successfully!');
+            router.push("/");
             
         } catch (error) {
             console.error('Failed to submit the form:', error);
