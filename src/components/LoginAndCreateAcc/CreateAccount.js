@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from 'next/link'
 import { Inter } from "next/font/google";
 import React, { useState } from 'react'
+import { useRouter } from 'next/router';
+import verifyUser from "../../../server/mongodb/actions/verifyUser";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,6 +13,7 @@ export default function CreateAccount() {
     const [currPass, setCurrPass] = useState("");
     const [currVerifyPass, setCurrVerifyPass] = useState("");
     const [admin, setAdmin] = useState(false);
+    const router = useRouter();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -21,6 +24,11 @@ export default function CreateAccount() {
             alert('Passwords need to match');
             return;
         }
+
+        await connectDB();
+        const user = await User.findOne({ email });
+        if (!user) {
+
         const formData = {
             fullName: currName,
             email: currEmail,
@@ -40,9 +48,11 @@ export default function CreateAccount() {
             }
             const result = await response.text();
             console.log(result);
-            alert('Form submitted successfully!');
+            alert('Account created successfully!');
+            router.push("/");
+
         } catch (error) {
-            console.error('Failed to submit the form:', error);
+            console.error('Failed:', error);
             alert('There was a problem with your submission. Please try again.');
         }
     };
@@ -65,9 +75,7 @@ export default function CreateAccount() {
                 <input onClick={() => setAdmin(!admin)} type="checkbox" className="border border-red-600 accent-red-600 mt-4 checked:bg-rd-600 h-5 w-5"/>
                 <div className="text-black ml-3 mt-3.5"> Admin Access </div>
             </div>
-            <Link href={"/"} className="text-white text-xl font-bold mt-[7%] w-[100] p-[1%] rounded-lg bg-red-600">
-                <button type="submit" className="w-[100%]">Sign up</button>
-            </Link>
+            <button type="submit" className="text-white text-xl font-bold mt-[7%] w-[100] p-[1%] rounded-lg bg-red-600">Sign up</button>
         </form>
 
         <div className="flex flex-row whitespace-nowrap mt-[7%]">
