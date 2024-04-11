@@ -40,7 +40,7 @@ export default function CreateAccount() {
                 body: JSON.stringify(formData),
             });
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error(await response.text());
             }
             const result = await response.text();
             console.log(result);
@@ -49,7 +49,7 @@ export default function CreateAccount() {
             
         } catch (error) {
             console.error('Failed to submit the form:', error);
-            alert('There was a problem with your submission. Please try again.');
+            alert('There was a problem with your submission. Please try again.' + error);
         }
     };
 

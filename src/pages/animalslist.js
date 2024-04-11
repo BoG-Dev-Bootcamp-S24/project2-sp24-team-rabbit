@@ -14,7 +14,7 @@ export default function AnimalsList() {
       <div className="bg-white w-[100%] h-[100%] flex flex-col relative">
         <Navbar searchBar={true}/>
         <div className="w-full h-full flex flex-row">
-          <SideBar adminAccess={true} currentPage={"animalslist"} user={user}/>
+          <SideBar adminAccess={user ? JSON.parse(user).admin : false} currentPage={"animalslist"} user={user}/>
           <div className="flex flex-col w-full h-full">
             <AnimalsListContainer user={user} allAnimals={false}/>
           </div>

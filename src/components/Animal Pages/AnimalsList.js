@@ -16,7 +16,7 @@ export default function AnimalsList({allAnimals}) {
     const[animalList, setAnimalList] = useState(null);
 
     const[formStatus, setFormStatus] = useState(false);
-    
+
     const toggleFormVisibility = () => {
       setFormStatus(!formStatus);
     };
@@ -62,8 +62,8 @@ export default function AnimalsList({allAnimals}) {
             <TopBanner formStatusProp={formStatus} setFormStatusProp={setFormStatus} title={allAnimals ? "All animals" : "Animals"}/>
             {formStatus ?
                 <Form type="animal" toggleForm={toggleFormVisibility}/> :
-                <div className="w-[100%] flex flex-row justify-start items-start flex-wrap text-black ml-[3%] py-10 overflow-y-auto overflow-x-hidden" style={{ maxHeight: 'calc(100vh - 150px)' }}>
-                    {animalList == null ? <div>Loading...</div> : animalList.length === 0 ? <div>No Animals Found</div> :
+                <div className="w-[100%] flex flex-row justify-start items-center flex-wrap text-black ml-[3%] py-10 overflow-y-auto overflow-x-hidden" style={{ maxHeight: 'calc(100vh - 150px)' }}>
+                    {animalList == null ? <div className="w-full flex justify-center items-center">Loading...</div> : animalList.length === 0 ? <div className="w-full flex justify-center items-center">No Animals Found</div> :
                         (animalList).map((animal, index) =>
                             <Animal animal={animal} key={index} />
                         )}

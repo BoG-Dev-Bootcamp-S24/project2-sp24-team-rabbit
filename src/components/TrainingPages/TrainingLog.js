@@ -47,8 +47,19 @@ export default function TrainingLog({allTraining}) {
                 throw new Error('Network response was not ok');
             }
             const result = await response.json();
-            result.sort((a, b) => new Date(a.date) - new Date(b.date));
-            result.reverse();
+            result.sort((a, b) => {
+              const dateA = new Date(a.date);
+              const dateB = new Date(b.date);
+          
+              if (dateA.getFullYear() !== dateB.getFullYear()) {
+                  return dateB.getFullYear() - dateA.getFullYear();
+              } else if (dateA.getMonth() !== dateB.getMonth()) {
+                  return dateB.getMonth() - dateA.getMonth();
+              } else {
+                  return dateB.getDate() - dateA.getDate();
+              }
+          });
+            // result.reverse();
             setLogs(result);
       } catch (error) {
           console.error('Failed to fetch data:', error);
