@@ -65,7 +65,9 @@ export default function CreateAccount() {
                 <input onClick={() => setAdmin(!admin)} type="checkbox" className="border border-red-600 accent-red-600 mt-4 checked:bg-rd-600 h-5 w-5"/>
                 <div className="text-black ml-3 mt-3.5"> Admin Access </div>
             </div>
-            <button type="submit" onClick={() => false} className="text-white text-xl font-bold mt-[7%] w-[100] p-[1%] rounded-lg bg-red-600">Sign up</button>
+            <Link href={"/"} className="text-white text-xl font-bold mt-[7%] w-[100] p-[1%] rounded-lg bg-red-600">
+                <button type="submit" className="w-[100%]">Sign up</button>
+            </Link>
         </form>
 
         <div className="flex flex-row whitespace-nowrap mt-[7%]">
