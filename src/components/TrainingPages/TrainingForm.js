@@ -8,7 +8,7 @@ export default function TrainingForm({ toggleForm }) {
     const [title, setTitle] = useState("");
     const [animal, setAnimal] = useState("");
     const [hours, setHours] = useState("");
-    const [month, setMonth] = useState("");
+    const [month, setMonth] = useState("January");
     const [day, setDay] = useState("");
     const [year, setYear] = useState("");
     const [note, setNote] = useState("");
@@ -28,7 +28,7 @@ export default function TrainingForm({ toggleForm }) {
         const date = new Date(`${month} ${day}, ${year}`).toISOString();
         const formData = {
             user: JSON.parse(user).user,
-            animal,
+            animal: animal,
             title,
             date,
             description: note,
@@ -47,7 +47,6 @@ export default function TrainingForm({ toggleForm }) {
             }
             const result = await response.text();
             console.log(result);
-            alert('Form submitted successfully!');
             toggleForm();
         } catch (error) {
             console.error('Failed to submit the form:', error);

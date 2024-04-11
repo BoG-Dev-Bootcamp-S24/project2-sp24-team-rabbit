@@ -89,7 +89,7 @@ export default function SideBar({adminAccess, currentPage, user}) {
     }
 
     return (
-        <div className="p-5 h-[715px] border-r-2 border-gray-100 flex flex-col w-full justify-between" style={{width: `18%`}}>
+        <div className="p-5 h-[740px] border-r-2 border-gray-100 flex flex-col w-full justify-between" style={{width: `18%`}}>
             <div className="w-full">
                 <SidebarButton onClickFunc={handleTrainingLogsClick} inactiveImgSrc={inactiveTrainingLogsLogo} activeImgSrc={activeTrainingLogsLogo} activeBool={trainingLogsActive} text={"Training logs"}/>
                 <SidebarButton onClickFunc={handleAnimalsClick} inactiveImgSrc={inactiveAnimalLogo} activeImgSrc={activeAnimalsLogo} activeBool={animalsActive} text={"Animals"}/>
