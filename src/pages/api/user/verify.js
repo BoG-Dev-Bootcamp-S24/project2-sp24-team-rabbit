@@ -1,12 +1,17 @@
-import verifyUser from "../../../server/mongodb/actions/verifyUser";
+import verifyUser from "../../../../server/mongodb/actions/verifyUser";
+import cookie from "cookie"
+import jwt from "jsonwebtoken"
+
 
 export default async function handler(req, res) {
     if (req.method === "POST") {
         try {
             const {email, password} = req.body;
             const user = await verifyUser(email, password);
-            if (users) {
-                return res.status(200).send(users);
+            if (user) {
+                const token = jwt.sign(user, "BoG");
+                res.setHeader('Set-Cookie', cookie.serialize('session', token, {path: "/"}))
+                return res.status(200).send(user);
             } else {
                 return res.status(500).send("Incorrect email and password entered");
             }

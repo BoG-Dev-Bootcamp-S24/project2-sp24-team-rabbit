@@ -24,7 +24,7 @@ export default function Login() {
 
       <div className="flex flex-row whitespace-nowrap mt-[7%]">
         <p className="text-black">Don't have an account?</p>
-        <Link href="/signup" className="pl-[3%] font-bold text-black">Sign up</Link>
+        <Link href="/signup" className="pl-[3%] font-bold text-black hover:text-red-600">Sign up</Link>
       </div>
 
     </div>

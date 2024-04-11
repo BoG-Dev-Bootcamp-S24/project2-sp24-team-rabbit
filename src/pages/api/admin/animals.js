@@ -1,3 +1,4 @@
+import cookie from "cookie"
 import getAnimals from "../../../server/mongodb/actions/getAnimals";
 
 export default async function handler(req, res) {
