@@ -4,7 +4,7 @@ import User from "../models/User";
 export default async function createUser(data) {
     try {
         await connectDB();
-        const {fullName, email, password, admin} = data;
+        let {fullName, email, password, admin} = data;
         password = await bcrypt.hash(password, 10);
         const user = new User({fullName, email, password, admin});
         await user.save();
