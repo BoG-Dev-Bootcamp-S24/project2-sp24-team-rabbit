@@ -8,11 +8,11 @@ export default async function updateTrainingLog(data) {
         if (!trainingLog) {
             throw new Error('Need to provide the training log to update in the query');
         }
-        const logExists = await TrainingLog.findByID(trainingLog);
+        const logExists = await TrainingLog.findById(trainingLog);
         if (!logExists) {
-            return "Training Log Not Found";
+            throw new Error("Training Log Not Found");
         }
-        return await Animal.findByIdAndUpdate(animalExists._id, { hours : newHours }, { new: true });
+        return await TrainingLog.findByIdAndUpdate({ hours : newHours }, { new: true });
     } catch (e) {
         console.log(e)
         throw new Error("Unable to update animal. Invalid data or database issue.")

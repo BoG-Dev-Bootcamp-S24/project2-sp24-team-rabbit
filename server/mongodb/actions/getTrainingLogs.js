@@ -1,12 +1,18 @@
 import connectDB from "..";
 import TrainingLog from "../models/TrainingLog";
 
-export default async function getUsers() {
-    try {
-        await connectDB();
-        return JSON.stringify(await TrainingLog.find());
-    } catch (error) {
-        console.error("Error connecting to database", error);
-        throw error;
-    }
+export default async function getAllLogs() {
+  try {
+    await connectDB();
+
+    const result = await TrainingLog.find({})
+      .populate('user', 'fullName') // Populate user field with fullName from User model
+      .populate('animal', 'name breed') // Populate animal field with name and breed from Animal model
+      .lean();
+
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }

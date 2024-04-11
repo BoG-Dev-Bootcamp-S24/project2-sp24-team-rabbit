@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const trainingLogSchema = new mongoose.Schema({
     user : {
-        type : String,
+        type : mongoose.Schema.Types.ObjectID,
         required : true,
         ref : 'User'
     },
     animal : {
-        type : String,
+        type : mongoose.Schema.Types.ObjectID,
         required : true,
         ref : 'Animal'
     },

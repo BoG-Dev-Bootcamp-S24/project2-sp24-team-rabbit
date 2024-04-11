@@ -1,18 +1,21 @@
-import bcrypt from "bcryptjs"
+import bcrypt from "bcryptjs";
 import User from "../models/User";
 import connectDB from "..";
 
 export default async function verifyUsers(email, password) {
-    try {
-        await connectDB();
-        const user = await User.findOne({email});
-        if (!user) {
-            res.status(400).return("User Not Found");
-        }
-        console.log(user.password);
-        const result = await bcrypt.compare(password, user.password);
-        return result ? {user : user._id, admin : user.admin} : null;
-    } catch (error) {
-        console.log(error);
+  try {
+    await connectDB();
+    const user = await User.findOne({ email });
+    if (!user) {
+      throw new Error("User not found");
     }
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      throw new Error("Incorrect password");
+    }
+    return { user: user._id, admin: user.admin, fullName: user.fullName };
+  } catch (error) {
+    console.error("Error verifying user:", error.message);
+    throw error;
+  }
 }

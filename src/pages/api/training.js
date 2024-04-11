@@ -1,4 +1,5 @@
 import createTrainingLog from "../../../server/mongodb/actions/createTrainingLog";
+import getUserLogs from "../../../server/mongodb/actions/getUserLogs";
 import updateTrainingLog from "../../../server/mongodb/actions/updateTrainingLog";
 
 export default async function handler(req, res) {
@@ -13,6 +14,18 @@ export default async function handler(req, res) {
             }
         } catch (error) {
             return res.status(500).send("Failed");
+        }
+    } else if (req.method === "GET") {
+        try {
+            const { userID } = req.body;
+            if (!userID) {
+                return res.status(400).send("Please enter a userID");
+            } else {
+                await getUserLogs({userID});
+                return res.status(200).send("Success");
+            }
+        } catch (error) {
+            return res.status(500).send("Failed to GET");
         }
     } else if (req.method === "PATCH") {
         try {

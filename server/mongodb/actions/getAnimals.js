@@ -1,12 +1,13 @@
 import connectDB from "..";
 import Animal from "../models/Animal";
 
-export default async function getUsers() {
-    try {
-        await connectDB();
-        return JSON.stringify(await Animal.find());
-    } catch (error) {
-        console.error("Error connecting to database", error);
-        throw error;
-    }
+export default async function getAllAnimals() {
+  try {
+    await connectDB();
+    const result = await Animal.find({}).populate('owner', 'fullName').lean(); // populate owner with name from User model
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
