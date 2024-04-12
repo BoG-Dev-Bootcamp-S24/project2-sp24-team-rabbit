@@ -8,79 +8,81 @@ import { useState, useEffect } from 'react';
 import TrainingLogItem from './TrainingLogItem';
 import Link from 'next/link';
 import TrainingForm from "./TrainingForm"
+import { useRouter } from "next/router";
 
-export default function TrainingLog({user, allTraining}) {
+export default function TrainingLog({allTraining}) {
 
-    const [logs, setLogs] = useState([]);
+    const [logs, setLogs] = useState(null);
+
     const [formStatus, setFormStatus] = useState(false);
-  
-    useEffect(() => {
-      const mockedLogs = [
-        {
-          id: 1,
-          title: 'Complete sit lessons',
-          date: '2023-10-20T14:48:00.000Z',
-          userName: 'Nathan',
-          animalName: 'Jeff',
-          breed: 'Golden Retriever',
-          hours: 2,
-          description: 'First training session went well.',
-        },
-        {
-            id: 2,
-            title: 'Intruder training',
-            date: '2023-10-23T14:48:00.000Z',
-            userName: 'Philip',
-            animalName: 'Isaiah',
-            breed: 'Border Collier',
-            hours: 4,
-            description: 'Unable to do so, improvement needed.',
-          },
-          {
-            id: 3,
-            title: 'Potty train',
-            date: '2023-10-16T14:48:00.000Z',
-            userName: 'Philip',
-            animalName: 'Nick',
-            breed: 'Chihuahua',
-            hours: 1,
-            description: 'Pretty alright. Needs some work, but good job overall.',
-          },
-          {
-            id: 4,
-            title: 'Teach how to spin',
-            date: '2023-10-14T14:48:00.000Z',
-            userName: 'Nathan',
-            animalName: 'Jeff',
-            breed: 'Golden Retriever',
-            hours: 5,
-            description: 'Jeff spun! The goat.',
-          },
-          {
-            id: 5,
-            title: 'Scare away cats',
-            date: '2023-10-18T14:48:00.000Z',
-            userName: 'Nathan',
-            animalName: 'Anna',
-            breed: 'Huskie',
-            hours: 2,
-            description: 'Anna is a dog. Why is she scared of cats!?',
-          },
-      ];
-  
-      setTimeout(() => {
-        setLogs(mockedLogs);
-      }, 100);
-    }, []);
+    const toggleFormVisibility = () => {
+      setFormStatus(!formStatus);
+    };
 
+    const router = useRouter();
+    const user = router.query.user;
+
+    async function loadLogs(userID) {
+      try {
+          if (user) {
+              const response = await fetch(`http://localhost:3000/api/training?userID=${userID}`);
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              const result = await response.json();
+              result.sort((a, b) => new Date(a.date) - new Date(b.date));
+              result.reverse();
+              setLogs(result);
+          }
+      } catch (error) {
+          console.error('Failed to fetch data:', error);
+      }
+    };
+
+    async function loadAllLogs() {
+      try {
+          
+            const response = await fetch(`http://localhost:3000/api/admin/trainings`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const result = await response.json();
+            result.sort((a, b) => {
+              const dateA = new Date(a.date);
+              const dateB = new Date(b.date);
+          
+              if (dateA.getFullYear() !== dateB.getFullYear()) {
+                  return dateB.getFullYear() - dateA.getFullYear();
+              } else if (dateA.getMonth() !== dateB.getMonth()) {
+                  return dateB.getMonth() - dateA.getMonth();
+              } else {
+                  return dateB.getDate() - dateA.getDate();
+              }
+          });
+            // result.reverse();
+            setLogs(result);
+      } catch (error) {
+          console.error('Failed to fetch data:', error);
+      }
+    };
+
+    allTraining ? useEffect(() => {
+      console.log("All training active")
+      loadAllLogs();
+    }, []) :
+    useEffect(() => {
+      loadLogs(user ? JSON.parse(user).user : "");
+    }, [formStatus]);
+
+    
     return (
       <div className="w-[100%] overflow-auto">
           <TopBanner formStatusProp={formStatus} setFormStatusProp={setFormStatus} title={allTraining ? "All training" : "Training logs"}/>
-          {formStatus ? 
-            <TrainingForm type="animal" /> : // training log item
+          {formStatus ?
+            <TrainingForm type="animal" toggleForm={toggleFormVisibility}/> :
             <div className="w-[100%] flex flex-col items-center justify-start overflow-y-auto overflow-x-hidden pt-6">
-              {logs == null ? <div>Loading...</div> : logs[0] == null ? <div>No Training Logs Found</div> :
-                logs.filter((currentTrainingItem) => (currentTrainingItem.userName === user || allTraining)).map((log) => ( 
+              {logs == null ? <div>Loading...</div> : logs.length === 0 ? <div>No Training Logs Found</div> :
+                logs.map((log) => (
                   <TrainingLogItem key={log.id} log={log} allTraining={allTraining} />
                 ))}
             </div>

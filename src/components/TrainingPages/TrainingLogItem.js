@@ -23,7 +23,7 @@ export default function TrainingLogItem({ log, allTraining }) {
                         ({log.hours} hour{log.hours!==1 ? "s" : ""})
                     </span>
                 </h3>
-                <p className="text-gray-700 mt-1"><span className="font-semibold">{log.animalName}</span>, {log.breed}{ allTraining && ("  ·  " + log.userName)}</p>
+                <p className="text-gray-700 mt-1"><span className="font-semibold">{log.animal.name}</span>, {log.animal.breed}{ allTraining && ("  ·  " + log.user.fullName)}</p>
                 <p className="text-gray-500 mt-3 text-xs ">{log.description}</p>
             </div>
             <div className="flex-none mr-8">

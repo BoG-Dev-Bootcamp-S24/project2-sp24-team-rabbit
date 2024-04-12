@@ -17,7 +17,7 @@ export default async function handler(req, res) {
         }
     } else if (req.method === "GET") {
         try {
-            const { userID } = req.body;
+            const { userID } = req.query;
             if (!userID) {
                 return res.status(400).send("Please enter a userID");
             } else {
