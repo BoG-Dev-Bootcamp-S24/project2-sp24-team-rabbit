@@ -1,5 +1,7 @@
 import connectDB from "..";
 import TrainingLog from "../models/TrainingLog";
+import User from "../models/User";
+import Animal from "../models/Animal";
 import { ObjectId } from "mongodb"
 
 export default async function getUserLogs(userID) {

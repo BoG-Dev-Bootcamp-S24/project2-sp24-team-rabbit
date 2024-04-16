@@ -51,6 +51,7 @@ export default function Form({ toggleForm }) {
             console.error('Failed to submit the form:', error);
         }
     };
+
     return(
         <div className="w-full h-full flex flex-col items-center content-start text-black border">
             <div className="w-full h-full overflow-y-auto flex justify-center pb-[10%]">
@@ -99,8 +100,7 @@ export default function Form({ toggleForm }) {
                     <div className="w-[100%] flex flex-row justify-start mb-20">
                         <button type="button" className="text-xl font-bold mt-[7%] w-[25%] p-[1%] rounded-md border-2 border-red-600 text-red-600 mr-[5%]"
                         onClick={handleClearOrSave}>Clear</button>
-                        <button type="submit" className="text-white text-xl font-bold mt-[7%] w-[25%] p-[1%] rounded-md bg-red-600"
-                        onClick={() => false}>Save</button>
+                        <button type="submit" className="text-white text-xl font-bold mt-[7%] w-[25%] p-[1%] rounded-md bg-red-600">Save</button>
                     </div>
                 </form>
             </div>

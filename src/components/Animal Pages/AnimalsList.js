@@ -50,12 +50,9 @@ export default function AnimalsList({allAnimals}) {
         }
       };
 
-    allAnimals ? useEffect(() => {
-        loadAllAnimals();
-      }, []) :
-      useEffect(() => {
-        loadAnimals(user ? JSON.parse(user).user : "");
-      }, [formStatus]);
+    useEffect(() => {
+        allAnimals ? loadAllAnimals() : loadAnimals(user ? JSON.parse(user).user : "");
+    }, [allAnimals, formStatus]);
 
     return (
         <div className="w-[100%] h-[100%] overflow-hidden">
@@ -63,7 +60,7 @@ export default function AnimalsList({allAnimals}) {
             {formStatus ?
                 <Form type="animal" toggleForm={toggleFormVisibility}/> :
                 <div className="w-[100%] flex flex-row justify-start items-center flex-wrap text-black ml-[3%] py-10 overflow-y-auto overflow-x-hidden" style={{ maxHeight: 'calc(100vh - 150px)' }}>
-                    {animalList == null ? <div className="w-full flex justify-center items-center">Loading...</div> : animalList.length === 0 ? <div className="w-full flex justify-center items-center">No Animals Found</div> :
+                    {animalList === null ? <div className="w-full flex justify-center items-center">Loading...</div> : animalList.length === 0 ? <div className="w-full flex justify-center items-center">No Animals Found</div> :
                         (animalList).map((animal, index) =>
                             <Animal animal={animal} key={index} />
                         )}

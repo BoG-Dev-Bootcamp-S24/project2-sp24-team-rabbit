@@ -1,5 +1,6 @@
 import connectDB from "..";
 import Animal from "../models/Animal";
+import User from "../models/User";
 
 export default async function getAnimals() {
   try {

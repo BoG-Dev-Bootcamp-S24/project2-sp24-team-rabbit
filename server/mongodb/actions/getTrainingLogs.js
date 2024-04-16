@@ -1,5 +1,7 @@
 import connectDB from "..";
 import TrainingLog from "../models/TrainingLog";
+import Animal from "../models/Animal";
+import User from "../models/User";
 
 export default async function getTrainingLogs() {
   try {
